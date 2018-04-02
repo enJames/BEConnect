@@ -1,6 +1,15 @@
 body, html {
     min-height: 90vh;
 }
+.cover {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.tint {
+    background-color: rgba(0,10,80,.4);
+    height: 100%;
+}
 .navbar-nav a {
     color: white !important;
     font-size: 1.2rem;

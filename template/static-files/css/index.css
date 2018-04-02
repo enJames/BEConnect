@@ -1,13 +1,6 @@
 .cover {
     background-image: url('../img/bg/index.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
     min-height: 90%;
-}
-.tint {
-    background-color: rgba(0,10,80,.4);
-    height: 100%;
 }
 .search-area {
     background-color: rgba(210,210,240,.3);
