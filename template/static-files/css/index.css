@@ -1,6 +1,13 @@
 .cover {
     background-image: url('../img/bg/index.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     min-height: 90%;
+}
+.tint {
+    background-color: rgba(0,10,80,.4);
+    height: 100%;
 }
 .search-area {
     background-color: rgba(210,210,240,.3);
@@ -14,32 +21,6 @@
     background-color: rgba(0, 0, 60, .9);
     border-radius: 10px 10px 0 0;
     box-shadow: 1px 1px 10px .5px rgba(0,0,0,.4);
-}
-input {
-    height: 50px;
-    text-indent: 10px;
-    font-size: 1.2rem !important;
-    color: rgb(0, 20, 60);
-    transition: .3s ease-in-out !important;
-}
-input::placeholder {
-    font-style: italic;
-}
-input:focus {
-    text-indent: 15px !important;
-}
-form button {
-    min-width: 150px;
-    height: 50px;
-    font-size: 1.2rem !important;
-    border-color: white !important;
-    color: white !important;
-}
-form button:hover {
-    background-color: white !important;
-    border-color: rgb(0, 20, 60) !important;
-    color: rgb(0, 20, 60) !important;
-    font-weight: bold !important;
 }
 .search-result-container {
     background-color: rgba(0,0,40,.8);
