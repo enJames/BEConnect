@@ -35,7 +35,7 @@
 }
 .search-result {
     border-top: 1px solid white;
-    transition: .5s ease-in-out;
+    transition: all .5s ease-in-out;
 }
 .search-result:hover {
     background-color: rgba(0,0,20,.5);
@@ -58,6 +58,7 @@
 .trending {
     box-shadow: 0px 0px 4px 0px grey;
     border-radius: 10px;
+    transition: all .5s ease-in-out;
 }
 .trending:hover {
     background-color: rgba(0,10,40,.9);

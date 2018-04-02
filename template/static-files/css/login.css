@@ -29,7 +29,7 @@ input {
     text-indent: 10px;
     font-size: 1.2rem !important;
     color: rgb(0, 20, 60);
-    transition: .3s ease-in-out !important;
+    transition: all .5s ease-in-out !important;
 }
 input::placeholder {
     font-style: italic;
