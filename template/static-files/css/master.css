@@ -1,0 +1,22 @@
+body, html {
+    min-height: 90vh;
+}
+.navbar-nav a {
+    color: white !important;
+    font-size: 1.2rem;
+}
+.navbar-brand img {
+    max-width: 200px;
+    height: auto;
+}
+.navbar-brand img {
+    width: 100%;
+    height: auto;
+}
+.fa {
+    color: white;
+    font-size: 2rem;
+}
+.fa:hover {
+    transform: scale(1.2);
+}
