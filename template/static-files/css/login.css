@@ -10,10 +10,14 @@ body, html {
 }
 .tint {
     background-color: rgba(0,10,80,.8);
+    position: relative;
     height: 100%;
-    padding: 10% 0 0 0;
 }
 .login-area {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 400px;
     border-radius: 10px;
     box-shadow: 1px 1px 10px .5px rgba(0,0,0,.4);
@@ -51,34 +55,13 @@ form button:hover {
     font-weight: bold !important;
 }
 
-@media screen and (max-width: 768px) {
-    .tint {
-        padding: 12% 0 0 0;
-    }
-}
 @media screen and (max-width: 600px) {
-    .tint {
-        padding: 14% 0 0 0;
-    }
     input, form button {
         height: 40px;
     }
 }
 @media screen and (max-width: 500px) {
-    .tint {
-        padding: 16% 0 0 0;
-    }
     .login-area {
         width: 90%;
-    }
-}
-@media screen and (max-width: 400px) {
-    .tint {
-        padding: 18% 0 0 0;
-    }
-}
-@media screen and (max-width: 370px) {
-    .tint {
-        padding: 20% 0 0 0;
     }
 }
