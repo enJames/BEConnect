@@ -13,15 +13,23 @@
     <body>
         <div class="cover">
             <div class="tint">
-                <div class="form-container">
-                    <form class="form-group" method="POST">
-                        <label for="email">Email Address</label>
-                        <input class="form-control" type="email" name="email" id="email" placeholder="Email address" aria-describedby="label">
-                        <label for="password">Password</label>
-                        <input class="form-control" type="password" name="password" id="password" placeholder="Password" aria-describedby="label">
-                        <button type="button" name="button"></button>
-                    </form>
+                <div class="login-area mx-auto">
+                    <div class="logo-div text-center py-4">
+                        <img class="img-fluid" src="static-files/img/logo/logo.png" alt="logo">
+                    </div>
+                    <div class="form-container p-4">
+                        <form class="form-group" method="POST">
+                            <label for="email">Email Address</label>
+                            <input class="form-control" type="email" name="email" id="email" placeholder="Email address" aria-describedby="label">
+                            <label for="password">Password</label>
+                            <input class="form-control" type="password" name="password" id="password" placeholder="Password" aria-describedby="label">
+                            <div class="text-center mt-4">
+                                <button class="btn btn-outline-success" type="button" name="button">Login</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
+
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
