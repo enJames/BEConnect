@@ -1,0 +1,84 @@
+body, html {
+    height: 100vh;
+}
+.cover {
+    background-image: url('../img/bg/index.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100%;
+}
+.tint {
+    background-color: rgba(0,10,80,.8);
+    height: 100%;
+    padding: 10% 0 0 0;
+}
+.login-area {
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px .5px rgba(0,0,0,.4);
+}
+.logo-div img {
+    width: 40%;
+}
+.form-container {
+    border-top: 1px solid white;
+}
+input {
+    height: 50px;
+    text-indent: 10px;
+    font-size: 1.2rem !important;
+    color: rgb(0, 20, 60);
+    transition: .3s ease-in-out !important;
+}
+input::placeholder {
+    font-style: italic;
+}
+input:focus {
+    text-indent: 15px !important;
+}
+form button {
+    min-width: 150px;
+    height: 50px;
+    font-size: 1.2rem !important;
+    border-color: white !important;
+    color: white !important;
+}
+form button:hover {
+    background-color: white !important;
+    border-color: rgb(0, 20, 60) !important;
+    color: rgb(0, 20, 60) !important;
+    font-weight: bold !important;
+}
+
+@media screen and (max-width: 768px) {
+    .tint {
+        padding: 12% 0 0 0;
+    }
+}
+@media screen and (max-width: 600px) {
+    .tint {
+        padding: 14% 0 0 0;
+    }
+    input, form button {
+        height: 40px;
+    }
+}
+@media screen and (max-width: 500px) {
+    .tint {
+        padding: 16% 0 0 0;
+    }
+    .login-area {
+        width: 90%;
+    }
+}
+@media screen and (max-width: 400px) {
+    .tint {
+        padding: 18% 0 0 0;
+    }
+}
+@media screen and (max-width: 370px) {
+    .tint {
+        padding: 20% 0 0 0;
+    }
+}
