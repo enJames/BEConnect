@@ -1,0 +1,28 @@
+.main-content {
+    margin-top: 150px;
+}
+form {
+    box-shadow: 1px 1px 10px 0 rgba(0,0,0,.5);
+}
+form button {
+    border-color: rgb(0, 20, 60) !important;
+    color: rgb(0, 20, 60) !important;
+}
+form button:hover {
+    background-color: rgb(0, 20, 60) !important;
+    color: white !important;
+}
+@media screen and (max-width: 768px) {
+
+}
+@media screen and (max-width: 576px) {
+
+}
+@media screen and (max-width: 510px) {
+
+}
+@media screen and (max-width: 302px) {
+    .main-content {
+        margin-top: 180px;
+    }
+}
