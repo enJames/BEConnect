@@ -1,20 +1,29 @@
 body, html {
     min-height: 90vh;
 }
-.navbar-nav a {
+.my-nav-bg {
+    background-color: white;
+}
+.cover .navbar-nav a {
     color: white !important;
     font-size: 1.2rem;
 }
+.nav-div {
+    box-shadow: 0 4px 10px -1px rgba(0,0,0,0.5);
+}
+.nav-div .navbar-nav a {
+    color: rgb(0,20,60) !important;
+    font-size: 1.2rem;
+    font-weight: normal;
+}
 .navbar-brand img {
     max-width: 200px;
-    height: auto;
 }
 .navbar-brand img {
     width: 100%;
     height: auto;
 }
 .fa {
-    color: white;
     font-size: 2rem;
 }
 .fa:hover {
@@ -22,7 +31,7 @@ body, html {
 }
 input {
     height: 50px;
-    text-indent: 10px;
+    text-indent: 5px;
     font-size: 1.2rem !important;
     color: rgb(0, 20, 60);
     transition: .3s ease-in-out !important;
@@ -30,20 +39,16 @@ input {
 input::placeholder {
     font-style: italic;
 }
-input:focus {
+.form-control:focus {
     text-indent: 15px !important;
+    border: none !important;
 }
 form button {
     min-width: 150px;
     height: 50px;
     font-size: 1.2rem !important;
-    border-color: white !important;
-    color: white !important;
 }
 form button:hover {
-    background-color: white !important;
-    border-color: rgb(0, 20, 60) !important;
-    color: rgb(0, 20, 60) !important;
     font-weight: bold !important;
 }
 footer {
