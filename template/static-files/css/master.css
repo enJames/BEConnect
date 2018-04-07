@@ -46,3 +46,10 @@ form button:hover {
     color: rgb(0, 20, 60) !important;
     font-weight: bold !important;
 }
+footer {
+    background-color: rgb(20, 20, 20);
+    color: grey;
+}
+.year {
+    background-color: black;
+}
