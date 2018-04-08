@@ -24,11 +24,15 @@
     border-radius: 10px 10px 0 0;
     box-shadow: 1px 1px 10px .5px rgba(0,0,0,.4);
 }
-form button {
+.search-area form button {
+    height: 50px;
+    text-indent: 5px;
+    font-size: 1.2rem !important;
+    transition: .3s ease-in-out !important;
     border-color: white !important;
     color: white !important;
 }
-form button:hover {
+.search-area form button:hover {
     background-color: white !important;
     color: rgb(0, 20, 60) !important;
 }
