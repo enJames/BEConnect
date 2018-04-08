@@ -1,6 +1,8 @@
 body, html {
     min-height: 90vh;
 }
+
+/* Navigation */
 .my-nav-bg {
     background-color: white;
 }
@@ -23,8 +25,42 @@ body, html {
     width: 100%;
     height: auto;
 }
+.dropdown-menu {
+    left: -120px;
+}
+
+/* User Navigation */
+.user-nav {
+    background-color: rgb(0,20,60);
+}
+.user-navbar, .user {
+    display: inline-block;
+}
+.user-navbar a {
+    font-size: 1.2rem;
+}
+.avatar {
+    display: inline-block;
+    width: 40px;
+    border-radius: 1000px;
+}
+.avatar img {
+    width: 100%;
+    border-radius: 1000px;
+}
+.user-item {
+    display: inline-block;
+    font-size: 1.2rem;
+    padding: 2px;
+    line-height: 42px;
+}
+
+/* Font Awesome */
 .fa {
     font-size: 2rem;
+}
+.fa-bell, .fa-envelope {
+    font-size: 1.4rem;
 }
 .fa:hover {
     transform: scale(1.2);
