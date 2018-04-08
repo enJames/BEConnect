@@ -9,6 +9,7 @@
     	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="static-files/css/normalize.css">
         <link rel="stylesheet" href="static-files/css/master.css">
+        <link rel="stylesheet" href="static-files/css/user-profile.css">
     </head>
     <body>
         <div class="nav-div fixed-top">
@@ -20,72 +21,97 @@
                     <i class="fa fa-navicon"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <form class="form-inline mx-auto nav-search">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
                     <div class="navbar-nav ml-auto">
                         <a class="nav-item nav-link active" href="index.html">Home</a>
                         <a class="nav-item nav-link" href="#">Businesses</a>
-
                     </div>
                 </div>
             </nav>
-            <div class="user-nav text-center">
-                <div class="user-navbar">
+            <div class="user-nav text-right">
+                <div class="user-navbar mr-4">
                     <a class="user-item pr-3" href="#"><i class="fa fa-bell"></i></a>
                     <a class="user-item pr-3" href="#"><i class="fa fa-envelope"></i></a>
-                    <a class="user-item dropdown">
-                        <div class="nav-item dropdown-toggle" href="#" id="userMenuLink" data-toggle="dropdown">
+                    <li class="user-item dropdown">
+                        <a class="no-decoration dropdown-toggle" href="#" id="userMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="avatar">
                                 <img class="mb-2"src="static-files/img/content/avatar/avatar.jpg" alt="John">
                             </div>
                             <span class="user-item">John</span>
-                        </div>
+                        </a>
                         <div class="dropdown-menu" aria-labelledby="userMenuLink">
                             <a class="dropdown-item" href="#">Profile</a>
                             <a class="dropdown-item" href="#">Change password</a>
                             <a class="dropdown-item" href="#">Logout</a>
                         </div>
-                    </a>
+                    </li>
                 </div>
             </div>
         </div>
-        <div class="container main-content">
-            <div class="description text-center">
-                <p>Already have an account? <a href="login.html"><strong>Log in</strong></a> instead.</p>
+        <div class="container mt-20 mb-5">
+            <div class="dashboard">
+                <div class="row">
+                    <div class="col-md-5 px-4">
+                        <div class="user-profile">
+                            <div class="profile-avatar">
+                                <img class="img-fluid" src="static-files/img/content/avatar/avatar.jpg" alt="John">
+                            </div>
+                            <div class="user-data">
+                                <table class="table table-responsive-md">
+                                    <tbody>
+                                        <tr>
+                                            <td>Username</td>
+                                            <td>John123</td>
+                                        </tr>
+                                        <tr>
+                                            <td>First Name</td>
+                                            <td>John</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Last Name</td>
+                                            <td>Doe</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Email Address</td>
+                                            <td>mailings@mail.com</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-6">
+                        <div class="my-businesses">
+                            <h3 class="text-center p-3">My Businesses</h3>
+                            <table class="table table-responsive-md text-center">
+                                <thead>
+                                    <tr>
+                                        <th>Business</th>
+                                        <th>Reviews</th>
+                                        <th>Rating</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-left"><a href="#">ES-Glamore International</a></td>
+                                        <td>29</td>
+                                        <td>4.2</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left"><a href="#">ES-Hotels & Suites</a></td>
+                                        <td>35</td>
+                                        <td>4.4</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <form class="m-5 p-4" method="POST">
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="firstname">First Name</label>
-                        <input type="text" class="form-control" id="firstname" placeholder="e.g John">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="lastname">Last Name</label>
-                        <input type="text" class="form-control" id="lastname" placeholder="e.g Doe">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="email">Email Address</label>
-                        <input type="email" class="form-control" id="email" placeholder="e.g something@example.com">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" placeholder="e.g johndoe123">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="At least 6 characters" min="6">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="repassword">Retype password</label>
-                        <input type="password" class="form-control" id="repassword" placeholder="Please enter password again">
-                    </div>
-                </div>
-                <div class="mt-3 px-0 text-center">
-                    <button class="btn btn-outline-success" type="submit">Sign Up</button>
-                </div>
-            </form>
         </div>
         <footer>
             <div class="container py-4">

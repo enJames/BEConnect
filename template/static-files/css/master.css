@@ -11,7 +11,7 @@ body, html {
     font-size: 1.2rem;
 }
 .nav-div {
-    box-shadow: 0 4px 10px -1px rgba(0,0,0,0.5);
+    box-shadow: 0 4px 10px -1px rgba(0,0,0,0.7);
 }
 .nav-div .navbar-nav a {
     color: rgb(0,20,60) !important;
@@ -19,14 +19,11 @@ body, html {
     font-weight: normal;
 }
 .navbar-brand img {
-    max-width: 200px;
+    max-width: 150px;
 }
 .navbar-brand img {
     width: 100%;
     height: auto;
-}
-.dropdown-menu {
-    left: -120px;
 }
 
 /* User Navigation */
@@ -38,6 +35,11 @@ body, html {
 }
 .user-navbar a {
     font-size: 1.2rem;
+    color: white;
+}
+.user-navbar a span {
+    font-size: 1.2rem;
+    color: white;
 }
 .avatar {
     display: inline-block;
@@ -54,6 +56,17 @@ body, html {
     padding: 2px;
     line-height: 42px;
 }
+.dropdown-item {
+    color: rgb(0,20,60) !important;
+}
+.dropdown-item:hover {
+    background-color: rgb(0,20,60) !important;
+    color: white !important;
+}
+.dropdown-menu {
+    top: 12px !important;
+    left: -120px;
+}
 
 /* Font Awesome */
 .fa {
@@ -65,32 +78,63 @@ body, html {
 .fa:hover {
     transform: scale(1.2);
 }
+
+/* Form styling */
 input {
     height: 50px;
     text-indent: 5px;
     font-size: 1.2rem !important;
     color: rgb(0, 20, 60);
-    transition: .3s ease-in-out !important;
+    transition: all .1s ease-in-out !important;
+}
+input:focus {
+    text-indent: 20px;
 }
 input::placeholder {
+    font-size: 1rem !important;
     font-style: italic;
-}
-.form-control:focus {
-    text-indent: 15px !important;
-    border: none !important;
 }
 form button {
     min-width: 150px;
     height: 50px;
     font-size: 1.2rem !important;
+    border-color: rgb(0, 20, 60) !important;
+    color: rgb(0, 20, 60) !important;
 }
 form button:hover {
     font-weight: bold !important;
+    background-color: rgb(0, 20, 60) !important;
+    color: white !important;
+
 }
+
+/* Navigation forms styling */
+.nav-search input, .nav-search button {
+    height: 40px;
+}
+.nav-search button {
+    min-width: 100px;
+    border-color: rgb(0, 20, 60) !important;
+    color: rgb(0, 20, 60) !important;
+}
+.nav-search button:hover {
+    background-color: rgb(0, 20, 60) !important;
+    color: white !important;
+}
+
+/* Footer styling */
 footer {
-    background-color: rgb(20, 20, 20);
+    background-color: rgb(0,20,60);
     color: grey;
 }
 .year {
     background-color: black;
+}
+
+/* Specials */
+.no-decoration {
+    text-decoration: none !important;
+}
+.mt-20 {
+    margin-top: 12rem !important;
 }

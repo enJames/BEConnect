@@ -4,19 +4,7 @@ body {
 .main-content {
     margin-top: 150px;
 }
-form {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0.5px 1px 4px 0 rgba(0,0,0,.5);
-}
-form button {
-    border-color: rgb(0, 20, 60) !important;
-    color: rgb(0, 20, 60) !important;
-}
-form button:hover {
-    background-color: rgb(0, 20, 60) !important;
-    color: white !important;
-}
+
 @media screen and (max-width: 768px) {
 
 }
