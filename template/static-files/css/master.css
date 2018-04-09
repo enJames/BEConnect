@@ -30,8 +30,8 @@ body, html {
 .user-nav {
     background-color: rgb(0,20,60);
 }
-.user-navbar, .user {
-    display: inline-block;
+.user-navbar {
+    margin-right: 25px;
 }
 .user-navbar a {
     font-size: 1.2rem;
@@ -122,6 +122,11 @@ form button:hover {
     color: white !important;
 }
 
+/* Table styling */
+.table {
+    display: table;
+}
+
 /* Footer styling */
 footer {
     background-color: rgb(0,20,60);
@@ -137,4 +142,11 @@ footer {
 }
 .mt-20 {
     margin-top: 12rem !important;
+}
+
+@media (max-width: 768px) {
+    .user-navbar {
+        margin: 0;
+        text-align: center;
+    }
 }
