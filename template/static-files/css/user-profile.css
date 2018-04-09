@@ -1,18 +1,17 @@
 body {
-    background-color: rgb(245,245,245);
+    background-color: rgb(240,240,240);
 }
 .user-profile {
-    width: 90%;
     background-color: white;
-    border-radius: 20px 20px 0 0;
-    box-shadow: 0 0 8px 1px rgb(0,0,0,.7);
+    border-radius: 5px;
+    box-shadow: 0 0 8px 0 rgb(0,0,0,.7);
 }
 .profile-avatar {
     background-color: rgb(0,20,60);
     width: 100%;
     padding: 1rem 5rem;
     overflow: hidden;
-    border-radius: 20px 20px 0 0;
+    border-radius: 5px 5px 0 0;
 }
 .profile-avatar img {
     border-radius: 1000px;
@@ -20,6 +19,6 @@ body {
 .my-businesses {
     width: 90%;
     background-color: white;
-    border-radius: 20px 20px 0 0;
-    box-shadow: 0 0 8px 1px rgb(0,0,0,.7);
+    border-radius: 5px;
+    box-shadow: 0 0 5px -1px rgb(0,0,0,.7);
 }
