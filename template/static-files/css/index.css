@@ -56,10 +56,6 @@
     background-color: rgba(0,0,20,.5);
     border-top: 1px solid white;
 }
-.rating-img {
-    display: inline-block;
-    width: 100px;
-}
 .see-more {
     margin-top: 5px;
 }
@@ -69,22 +65,6 @@
     border-top: 2px solid rgb(0,20,60);
     width: 30%;
     margin: .5rem 1rem;
-}
-.trending {
-    box-shadow: 0px 0px 4px 0px grey;
-    border-radius: 10px;
-    transition: all .5s ease-in-out;
-}
-.trending:hover {
-    background-color: rgba(0,10,40,.9);
-    color: white;
-}
-.trending a {
-    color: rgb(0,20,60);
-    text-decoration: none;
-}
-.trending:hover .trending-item {
-    color: white;
 }
 footer {
     background-color: rgb(20, 20, 20);
