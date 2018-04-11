@@ -17,9 +17,12 @@ body, html {
     color: rgb(0,20,60) !important;
     font-size: 1.2rem;
     font-weight: normal;
+}
+.navbar-nav a:hover {
+    color: rgb(14,113,198) !important;
     transition: .3s ease-in-out;
 }
-.nav-div .navbar-nav a:hover {
+.navbar-nav a:hover {
     transform: scale(1.2);
 }
 .navbar-brand img {
