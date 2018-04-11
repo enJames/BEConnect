@@ -11,12 +11,16 @@ body, html {
     font-size: 1.2rem;
 }
 .nav-div {
-    box-shadow: 0 4px 10px -1px rgba(0,0,0,0.7);
+    box-shadow: 0 1px 10px -1px rgba(0,0,0,0.7);
 }
 .nav-div .navbar-nav a {
     color: rgb(0,20,60) !important;
     font-size: 1.2rem;
     font-weight: normal;
+    transition: .3s ease-in-out;
+}
+.nav-div .navbar-nav a:hover {
+    transform: scale(1.2);
 }
 .navbar-brand img {
     max-width: 150px;
@@ -71,6 +75,7 @@ body, html {
 /* Font Awesome */
 .fa {
     font-size: 2rem;
+    transition: all .3s ease-in-out;
 }
 .fa-bell, .fa-envelope {
     font-size: 1.4rem;
@@ -137,11 +142,21 @@ footer {
 }
 
 /* Specials */
+.first-element-after-nav-margin-top {
+    margin-top: 85px;
+}
 .no-decoration {
     text-decoration: none !important;
 }
 .mt-20 {
     margin-top: 12rem !important;
+}
+.div-thumbnail {
+    border: 10px solid white;
+}
+.div-thumbnail-round {
+    border: 10px solid white;
+    border-radius: 5px;
 }
 
 @media (max-width: 768px) {
