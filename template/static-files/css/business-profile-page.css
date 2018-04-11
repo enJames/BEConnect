@@ -1,0 +1,66 @@
+.business-profile {
+    background-image: url('../img/content/businesses/cover/coy1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100%;
+    color: white;
+}
+.business-profile-tint {
+    background-color: rgba(0,0,10,.7);
+    height: 100%;
+}
+.review-rating-div a {
+    text-decoration: none;
+    color: white;
+}
+.review-rating-div div {
+    display: inline-block;
+    font-weight: bold;
+    transition: .3s ease-in-out;
+}
+.review-rating-div div:hover {
+    transform: scale(1.2);
+}
+.review-div span, .rating-div span {
+    display: block;
+}
+.business-name {
+    position: relative;
+}
+.rating-img {
+    position: absolute;
+    width: 80px;
+    top: 5px;
+    right: 0;
+}
+.business-name h1{
+    margin-bottom: 0;
+}
+.mantra {
+    font-style: italic;
+}
+.business-detail {
+    margin-bottom: 15px;
+}
+.business-detail i {
+    width: 20px;
+    font-size: 1.1rem;
+    margin: 0 10px 0 5px;
+}
+.sectional-div {
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0.5px 1px 4px 0 rgba(0,0,0,.5);
+}
+
+@media (max-width: 768px) {
+    .business-logo-wrapper {
+        max-width: 150px;
+    }
+    .rating-img {
+        top: -25px;
+        left: 50%;
+        margin-left: -40px;
+    }
+}
