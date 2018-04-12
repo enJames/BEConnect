@@ -1,15 +1,3 @@
-form {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0.5px 1px 4px 0 rgba(0,0,0,.5);
-    padding: 3rem;
-}
-@media screen and (max-width: 768px) {
-
-}
-@media screen and (max-width: 576px) {
-
-}
 @media screen and (max-width: 510px) {
     form {
         padding: 3rem 1rem;

@@ -10,7 +10,6 @@
         <link rel="stylesheet" href="static-files/css/normalize.css">
         <link rel="stylesheet" href="static-files/css/master.css">
         <link rel="stylesheet" href="static-files/css/submaster.css">
-        <link rel="stylesheet" href="static-files/css/user.css">
     </head>
     <body>
         <div class="nav-div fixed-top">
@@ -52,72 +51,58 @@
                 </div>
             </div>
         </div>
-        <div class="container mt-20 mb-5">
-            <div class="dashboard">
-                <div class="row">
-                    <div class="col-md-5">
-                        <div class="user-profile">
-                            <div class="profile-avatar div-thumbnail">
-                                <img class="img-fluid img-thumbnail" src="static-files/img/content/avatar/avatar.jpg" alt="John">
-                            </div>
-                            <div class="user-data">
-                                <table class="table table-responsive-md">
-                                    <tbody>
-                                        <tr>
-                                            <td>Username</td>
-                                            <td>John123</td>
-                                        </tr>
-                                        <tr>
-                                            <td>First Name</td>
-                                            <td>John</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Last Name</td>
-                                            <td>Doe</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Email Address</td>
-                                            <td>mailings@mail.com</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+        <div class="container element-after-nav-margin-top">
+            <form class="form-style my-5" method="POST">
+                <div class="form-group">
+                    <label for="businessName">Business Name</label>
+                    <input type="text" class="form-control" id="businessName" placeholder="Write in full">
+                </div>
+                <div class="form-group">
+                    <label for="mantra">Mantra</label>
+                    <input type="text" class="form-control" id="mantra" placeholder="What is your mantra">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="email">Email Address</label>
+                        <input type="email" class="form-control" id="email" placeholder="e.g something@example.com">
                     </div>
-                    <div class="col-md-1"></div>
-                    <div class="col-md-6">
-                        <div class="my-businesses">
-                            <h3 class="text-center p-3">My Businesses</h3>
-                            <div class="action-button-div">
-                                <a href="CreateBusinessPage.html">
-                                    <button class="action-button" type="button" name="new" id="new">New</button>
-                                </a>
-                            </div>
-                            <table class="table table-responsive-md text-center">
-                                <thead>
-                                    <tr>
-                                        <th>Business</th>
-                                        <th>Reviews</th>
-                                        <th>Rating</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="text-left"><a href="BusinessProfilePage.html">ES-Glamore International</a></td>
-                                        <td>29</td>
-                                        <td>4.2</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-left"><a href="#">ES-Hotels & Suites</a></td>
-                                        <td>35</td>
-                                        <td>4.4</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="form-group col-md-4">
+                        <label for="webAddress">Web Address</label>
+                        <input type="text" class="form-control" id="webAddress" placeholder="e.g www.example.com">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="phone">Phone number</label>
+                        <input type="" class="form-control" id="phone" placeholder="e.g 08062347845">
                     </div>
                 </div>
-            </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="address1">Address line 1</label>
+                        <input type="text" class="form-control" id="address1" placeholder="e.g 5, Thompson Street">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="address2">Address line 2</label>
+                        <input type="text" class="form-control" id="address2" placeholder="e.g Beside Ogunsanya Bus Stop">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" id="city" placeholder="e.g Maryland">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="state">State</label>
+                        <input type="text" class="form-control" id="state" placeholder="e.g Benue">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="country">Country</label>
+                        <input type="text" class="form-control" id="country" placeholder="e.g Nigeria">
+                    </div>
+                </div>
+                <div class="mt-3 px-0 text-center">
+                    <button class="btn btn-outline-success" type="submit">Register business</button>
+                </div>
+            </form>
         </div>
         <footer>
             <div class="container py-4">
