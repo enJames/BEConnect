@@ -145,8 +145,14 @@ footer {
 }
 
 /* Specials */
+.active {
+    font-weight: bold !important;
+}
 .first-element-after-nav-margin-top {
     margin-top: 85px;
+}
+.element-after-nav-margin-top {
+    margin-top: 160px;
 }
 .no-decoration {
     text-decoration: none !important;
