@@ -38,3 +38,22 @@ body {
 .business:hover .business-item {
     color: white;
 }
+.action-button-div {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+}
+.action-button {
+    background-color: rgb(0,20,60);
+    color: white;
+    font-weight: bold;
+    padding: 5px 8px;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 1px 1px 10px 0 rgba(0,0,0,.5);
+    transition: .3s ease-in-out;
+}
+.action-button:hover {
+    transform: scale(1.05);
+}
