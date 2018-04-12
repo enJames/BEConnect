@@ -1,0 +1,10 @@
+.page-nav .fa {
+    transform: rotate(-90deg);
+}
+.page-nav i, .page-nav span {
+    display: inline-block;
+    vertical-align: middle;
+}
+.page-nav span {
+    margin-right: 10px;
+}
