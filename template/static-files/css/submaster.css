@@ -1,6 +1,12 @@
 body {
     background-color: rgb(245,245,245);
 }
+.form-style {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0.5px 1px 4px 0 rgba(0,0,0,.5);
+    padding: 3rem;
+}
 .business-rating-img {
     display: inline-block;
     width: 100px;
