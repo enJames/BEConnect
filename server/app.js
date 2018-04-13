@@ -9,7 +9,11 @@ app.use(bodyParser.json());
 app.use(logger('combined'));
 
 app.get('*', (req, res) => {
-    res.send('Right here!');
+    res.send({
+        message: 'Welcome to the start!'
+    });
 });
 
 app.listen(port);
+
+export default app;
