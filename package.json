@@ -1,0 +1,19 @@
+{
+  "name": "beconnect",
+  "version": "1.0.0",
+  "description": "An application for connecting businesses and customers.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enJames/BEConnect.git"
+  },
+  "author": "Enejo James Oche",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/enJames/BEConnect/issues"
+  },
+  "homepage": "https://github.com/enJames/BEConnect#readme"
+}
