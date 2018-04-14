@@ -17,7 +17,7 @@ const BusinessController = {
 
         Businesses.push(dataToPersist);
 
-        return SendResponse(res, 400, 'Registration successful!', Businesses);
+        return SendResponse(res, 201, 'Registration successful!', Businesses);
     }
 };
 
