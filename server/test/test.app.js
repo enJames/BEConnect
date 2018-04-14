@@ -6,29 +6,57 @@ chai.use(chaiHttp);
 const { assert, should } = chai;
 should();
 
-describe('Server test', () => {
-    describe('When a user visits "/"', () => {
-        it('It should return a 200 status', (done) => {
+describe('POST BUSINESSES TESTS', () => {
+    describe('When a user sends a POST request to "/businesses"', () => {
+        it('It should return a 201 status', (done) => {
             chai.request(app)
-                .get('/')
+                .post('/businesses')
+                .send({
+                    businessName: 'Hamilton Berkleys',
+                    category: 'Food',
+                    state: 'Kano'
+                })
                 .end((req, res) => {
-                    res.should.have.status(200);
+                    res.should.have.status(201);
                     done();
                 });
         });
         it('It should return an object', (done) => {
             chai.request(app)
-                .get('/')
+                .post('/businesses')
+                .send({
+                    businessName: 'Hamilton Berkleys',
+                    category: 'Food',
+                    state: 'Kano'
+                })
                 .end((req, res) => {
                     res.body.should.be.an('object');
                     done();
                 });
         });
-        it('It should a message "Welcome to the start!"', (done) => {
+        it('Response message should equal "Registration successful!"', (done) => {
             chai.request(app)
-                .get('/')
+                .post('/businesses')
+                .send({
+                    businessName: 'Hamilton Berkleys',
+                    category: 'Food',
+                    state: 'Kano'
+                })
                 .end((req, res) => {
-                    assert.equal(res.body.message, 'Welcome to the start!', 'compare');
+                    assert.equal(res.body.message, 'Registration successful!', 'compare');
+                    done();
+                });
+        });
+        it('It should return a 400 if a field is not set."', (done) => {
+            chai.request(app)
+                .post('/businesses')
+                .send({
+                    businessName: 'Hamisc Berkleys',
+                    category: '',
+                    state: 'Sokoto'
+                })
+                .end((req, res) => {
+                    assert.equal(res.body.message, 'Fill out all fields', 'compare');
                     done();
                 });
         });
