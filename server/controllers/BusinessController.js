@@ -4,12 +4,10 @@ import SendResponse from '../SendResponse';
 const BusinessController = {
     // Register business
     create: (req, res) => {
-        // Assign user entries to variables
         const { businessName, category, state } = req.body;
 
         // Validation of user input
         if (!businessName || !category || !state) {
-            // Send a validation failure response
             return SendResponse(res, 400, 'Fill out all fields');
         }
         const dataToPersist = {
@@ -24,6 +22,22 @@ const BusinessController = {
 
         // Send a response after data persistence to database
         return SendResponse(res, 201, 'Registration successful!', Businesses);
+    },
+    // Update business
+    update: (req, res) => {
+        let updatedBusiness;
+
+        Businesses.forEach((business) => {
+            if (business.id === parseInt(req.params.businessId, 10)) {
+                business = { ...business, ...req.body };
+
+                updatedBusiness = business;
+            }
+        });
+        if (!updatedBusiness) {
+            return SendResponse(res, 404, 'Business not found!');
+        }
+        return SendResponse(res, 200, 'Business updated!', updatedBusiness);
     }
 };
 
