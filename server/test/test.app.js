@@ -241,11 +241,11 @@ describe('GET ALL BUSINESS TESTS', () => {
                     done();
                 });
         });
-        it('Response message should equal "Businesses found!"', (done) => {
+        it('Response message should equal "Found 4 businesses"', (done) => {
             chai.request(app)
                 .get('/api/v1/businesses')
                 .end((req, res) => {
-                    assert.equal(res.body.message, 'Business found!');
+                    assert.equal(res.body.message, 'Found 4 businesses');
                     done();
                 });
         });
@@ -253,23 +253,7 @@ describe('GET ALL BUSINESS TESTS', () => {
             chai.request(app)
                 .get('/api/v1/businesses')
                 .end((req, res) => {
-                    res.body.responseObject.length.should.be.at.least(2);
-                    done();
-                });
-        });
-        it('It should return a 404 status if business is not found', (done) => {
-            chai.request(app)
-                .get('/api/v1/businesses/10')
-                .end((req, res) => {
-                    res.should.have.status(404);
-                    done();
-                });
-        });
-        it('It should return a message "Business not found!" if business does not exist', (done) => {
-            chai.request(app)
-                .get('/api/v1/businesses/10')
-                .end((req, res) => {
-                    assert.equal(res.body.message, 'Business not found!');
+                    res.body.responseObject.length.should.equal(4);
                     done();
                 });
         });
