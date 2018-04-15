@@ -54,6 +54,20 @@ const BusinessController = {
             return SendResponse(res, 404, 'Business not found!');
         }
         return SendResponse(res, 202, 'Business deleted!', Businesses);
+    },
+    // Get a details of a business
+    getBusiness: (req, res) => {
+        let theBusiness;
+
+        Businesses.forEach((business) => {
+            if (business.id === parseInt(req.params.businessId, 10)) {
+                theBusiness = business;
+            }
+        });
+        if (!theBusiness) {
+            return SendResponse(res, 404, 'Business not found!');
+        }
+        return SendResponse(res, 200, 'Business found!', theBusiness);
     }
 };
 
