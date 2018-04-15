@@ -31,7 +31,7 @@ const BusinessController = {
         let updatedBusiness;
 
         Businesses.forEach((business) => {
-            if (business.id === parseInt(req.params.businessId, 10)) {
+            if (business.businessId === parseInt(req.params.businessId, 10)) {
                 business = { ...business, ...req.body };
 
                 updatedBusiness = business;
@@ -47,7 +47,7 @@ const BusinessController = {
         let removedBusiness;
 
         Businesses.forEach((business, index) => {
-            if (business.id === parseInt(req.params.businessId, 10)) {
+            if (business.businessId === parseInt(req.params.businessId, 10)) {
                 Businesses.splice(index, 1);
 
                 removedBusiness = business;
@@ -63,7 +63,7 @@ const BusinessController = {
         let theBusiness;
 
         Businesses.forEach((business) => {
-            if (business.id === parseInt(req.params.businessId, 10)) {
+            if (business.businessId === parseInt(req.params.businessId, 10)) {
                 theBusiness = business;
             }
         });
