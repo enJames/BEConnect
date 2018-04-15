@@ -38,6 +38,22 @@ const BusinessController = {
             return SendResponse(res, 404, 'Business not found!');
         }
         return SendResponse(res, 200, 'Business updated!', updatedBusiness);
+    },
+    // Remove a business
+    remove: (req, res) => {
+        let removedBusiness;
+
+        Businesses.forEach((business, index) => {
+            if (business.id === parseInt(req.params.businessId, 10)) {
+                Businesses.splice(index, 1);
+
+                removedBusiness = business;
+            }
+        });
+        if (!removedBusiness) {
+            return SendResponse(res, 404, 'Business not found!');
+        }
+        return SendResponse(res, 202, 'Business deleted!', Businesses);
     }
 };
 
