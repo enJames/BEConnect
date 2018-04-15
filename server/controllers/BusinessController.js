@@ -1,7 +1,7 @@
 import Models from '../models/Models';
 import SendResponse from '../SendResponse';
 
-const { businesses } = Models;
+const { Businesses } = Models;
 
 const BusinessController = {
     // BUSINESS ROUTES
@@ -14,23 +14,23 @@ const BusinessController = {
             return SendResponse(res, 400, 'Fill out all fields');
         }
         const dataToPersist = {
-            id: (businesses.length + 1),
+            id: (Businesses.length + 1),
             businessName,
             category,
             state
         };
 
         // Persist successful validation data to database
-        businesses.push(dataToPersist);
+        Businesses.push(dataToPersist);
 
         // Send a response after data persistence to database
-        return SendResponse(res, 201, 'Registration successful!', businesses);
+        return SendResponse(res, 201, 'Registration successful!', Businesses);
     },
     // Update business
     update: (req, res) => {
         let updatedBusiness;
 
-        businesses.forEach((business) => {
+        Businesses.forEach((business) => {
             if (business.id === parseInt(req.params.businessId, 10)) {
                 business = { ...business, ...req.body };
 
@@ -46,9 +46,9 @@ const BusinessController = {
     remove: (req, res) => {
         let removedBusiness;
 
-        businesses.forEach((business, index) => {
+        Businesses.forEach((business, index) => {
             if (business.id === parseInt(req.params.businessId, 10)) {
-                businesses.splice(index, 1);
+                Businesses.splice(index, 1);
 
                 removedBusiness = business;
             }
@@ -56,13 +56,13 @@ const BusinessController = {
         if (!removedBusiness) {
             return SendResponse(res, 404, 'Business not found!');
         }
-        return SendResponse(res, 202, 'Business deleted!', businesses);
+        return SendResponse(res, 202, 'Business deleted!', Businesses);
     },
     // Get a business
     getBusiness: (req, res) => {
         let theBusiness;
 
-        businesses.forEach((business) => {
+        Businesses.forEach((business) => {
             if (business.id === parseInt(req.params.businessId, 10)) {
                 theBusiness = business;
             }
@@ -74,8 +74,8 @@ const BusinessController = {
     },
     // Get all businesses
     getBusinesses: (req, res) => {
-        const message = `Found ${businesses.length} businesses`;
-        return SendResponse(res, 200, message, businesses);
+        const message = `Found ${Businesses.length} businesses`;
+        return SendResponse(res, 200, message, Businesses);
     }
 };
 

@@ -12,6 +12,7 @@ app.use(urlencoded); // parses application/x-www.form-urlencoded
 app.use(logger('combined'));
 
 Routes.businesses(app);
+Routes.reviews(app);
 
 app.listen(port);
 
