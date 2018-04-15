@@ -6,6 +6,7 @@ chai.use(chaiHttp);
 const { assert, should } = chai;
 should();
 
+// POST Business route tests
 describe('POST BUSINESSES TESTS', () => {
     describe('When a user sends a POST request to "/api/v1/businesses"', () => {
         it('It should return a 201 status', (done) => {
@@ -76,6 +77,7 @@ describe('POST BUSINESSES TESTS', () => {
     });
 });
 
+// Update business route tests
 describe('PUT BUSINESSES TESTS', () => {
     describe('When a user sends a PUT request to "/api/v1/businesses/:businessId"', () => {
         it('It should return a 200 status', (done) => {
@@ -136,6 +138,7 @@ describe('PUT BUSINESSES TESTS', () => {
     });
 });
 
+// Delete business route tests
 describe('DELETE BUSINESSES TESTS', () => {
     describe('When a user sends a DELETE request to "/api/v1/businesses/:businessId"', () => {
         it('It should return a 202 status', (done) => {
@@ -173,6 +176,52 @@ describe('DELETE BUSINESSES TESTS', () => {
         it('It should return a message "Business not found!" if business does not exist', (done) => {
             chai.request(app)
                 .delete('/api/v1/businesses/10')
+                .end((req, res) => {
+                    assert.equal(res.body.message, 'Business not found!');
+                    done();
+                });
+        });
+    });
+});
+
+// Get a business route tests
+describe('GET A BUSINESS TESTS', () => {
+    describe('When a user sends a GET request to "/api/v1/businesses/:businessId"', () => {
+        it('It should return a 200 status', (done) => {
+            chai.request(app)
+                .get('/api/v1/businesses/1')
+                .end((req, res) => {
+                    res.should.have.status(200);
+                    done();
+                });
+        });
+        it('It should return an object', (done) => {
+            chai.request(app)
+                .get('/api/v1/businesses/1')
+                .end((req, res) => {
+                    res.body.should.be.an('object');
+                    done();
+                });
+        });
+        it('Response message should equal "Business found!"', (done) => {
+            chai.request(app)
+                .get('/api/v1/businesses/1')
+                .end((req, res) => {
+                    assert.equal(res.body.message, 'Business found!');
+                    done();
+                });
+        });
+        it('It should return a 404 status if business is not found."', (done) => {
+            chai.request(app)
+                .get('/api/v1/businesses/10')
+                .end((req, res) => {
+                    res.should.have.status(404);
+                    done();
+                });
+        });
+        it('It should return a message "Business not found!" if business does not exist', (done) => {
+            chai.request(app)
+                .get('/api/v1/businesses/10')
                 .end((req, res) => {
                     assert.equal(res.body.message, 'Business not found!');
                     done();
