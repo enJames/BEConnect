@@ -55,7 +55,7 @@ const BusinessController = {
         }
         return SendResponse(res, 202, 'Business deleted!', Businesses);
     },
-    // Get a details of a business
+    // Get a business
     getBusiness: (req, res) => {
         let theBusiness;
 
@@ -68,6 +68,11 @@ const BusinessController = {
             return SendResponse(res, 404, 'Business not found!');
         }
         return SendResponse(res, 200, 'Business found!', theBusiness);
+    },
+    // Get all businesses
+    getBusinesses: (req, res) => {
+        const message = `Found ${Businesses.length} businesses`;
+        return SendResponse(res, 200, message, Businesses);
     }
 };
 
