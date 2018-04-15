@@ -43,7 +43,7 @@ describe('POST BUSINESSES TESTS', () => {
                     state: 'Kano'
                 })
                 .end((req, res) => {
-                    assert.equal(res.body.message, 'Registration successful!', 'compare');
+                    assert.equal(res.body.message, 'Registration successful!');
                     done();
                 });
         });
@@ -69,7 +69,7 @@ describe('POST BUSINESSES TESTS', () => {
                     state: 'Sokoto'
                 })
                 .end((req, res) => {
-                    assert.equal(res.body.message, 'Fill out all fields', 'compare');
+                    assert.equal(res.body.message, 'Fill out all fields');
                     done();
                 });
         });
@@ -107,7 +107,7 @@ describe('PUT BUSINESSES TESTS', () => {
                     state: 'Lagos'
                 })
                 .end((req, res) => {
-                    assert.equal(res.body.message, 'Business updated!', 'compare');
+                    assert.equal(res.body.message, 'Business updated!');
                     done();
                 });
         });
@@ -129,7 +129,52 @@ describe('PUT BUSINESSES TESTS', () => {
                     businessName: 'Hamisc Berkleys Limited'
                 })
                 .end((req, res) => {
-                    assert.equal(res.body.message, 'Business not found!', 'compare');
+                    assert.equal(res.body.message, 'Business not found!');
+                    done();
+                });
+        });
+    });
+});
+
+describe('DELETE BUSINESSES TESTS', () => {
+    describe('When a user sends a DELETE request to "/api/v1/businesses/:businessId"', () => {
+        it('It should return a 202 status', (done) => {
+            chai.request(app)
+                .delete('/api/v1/businesses/4')
+                .end((req, res) => {
+                    res.should.have.status(202);
+                    done();
+                });
+        });
+        it('It should return an object', (done) => {
+            chai.request(app)
+                .delete('/api/v1/businesses/3')
+                .end((req, res) => {
+                    res.body.should.be.an('object');
+                    done();
+                });
+        });
+        it('Response message should equal "Business deleted!"', (done) => {
+            chai.request(app)
+                .delete('/api/v1/businesses/2')
+                .end((req, res) => {
+                    assert.equal(res.body.message, 'Business deleted!');
+                    done();
+                });
+        });
+        it('It should return a 404 status if business is not found."', (done) => {
+            chai.request(app)
+                .delete('/api/v1/businesses/10')
+                .end((req, res) => {
+                    res.should.have.status(404);
+                    done();
+                });
+        });
+        it('It should return a message "Business not found!" if business does not exist', (done) => {
+            chai.request(app)
+                .delete('/api/v1/businesses/10')
+                .end((req, res) => {
+                    assert.equal(res.body.message, 'Business not found!');
                     done();
                 });
         });
