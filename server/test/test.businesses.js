@@ -249,7 +249,7 @@ describe('GET ALL BUSINESS TESTS', () => {
                     done();
                 });
         });
-        it('It should return at least 2 businesses', (done) => {
+        it('It should return 4 businesses', (done) => {
             chai.request(app)
                 .get('/api/v1/businesses')
                 .end((req, res) => {
