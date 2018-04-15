@@ -229,3 +229,49 @@ describe('GET A BUSINESS TESTS', () => {
         });
     });
 });
+
+// Get all businesses route tests
+describe('GET ALL BUSINESS TESTS', () => {
+    describe('When a user sends a GET request to /api/v1/businesses', () => {
+        it('It should return a 200 status', (done) => {
+            chai.request(app)
+                .get('/api/v1/businesses')
+                .end((req, res) => {
+                    res.should.have.status(200);
+                    done();
+                });
+        });
+        it('Response message should equal "Businesses found!"', (done) => {
+            chai.request(app)
+                .get('/api/v1/businesses')
+                .end((req, res) => {
+                    assert.equal(res.body.message, 'Business found!');
+                    done();
+                });
+        });
+        it('It should return at least 2 businesses', (done) => {
+            chai.request(app)
+                .get('/api/v1/businesses')
+                .end((req, res) => {
+                    res.body.responseObject.length.should.be.at.least(2);
+                    done();
+                });
+        });
+        it('It should return a 404 status if business is not found', (done) => {
+            chai.request(app)
+                .get('/api/v1/businesses/10')
+                .end((req, res) => {
+                    res.should.have.status(404);
+                    done();
+                });
+        });
+        it('It should return a message "Business not found!" if business does not exist', (done) => {
+            chai.request(app)
+                .get('/api/v1/businesses/10')
+                .end((req, res) => {
+                    assert.equal(res.body.message, 'Business not found!');
+                    done();
+                });
+        });
+    });
+});
