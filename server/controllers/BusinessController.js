@@ -2,7 +2,8 @@ import Businesses from '../models/Businesses';
 import SendResponse from '../SendResponse';
 
 const BusinessController = {
-    // Register business
+    // BUSINESS ROUTES
+    // Register a business
     create: (req, res) => {
         const { businessName, category, state } = req.body;
 

@@ -11,7 +11,7 @@ app.use(bodyParser.json()); // parses application/json
 app.use(urlencoded); // parses application/x-www.form-urlencoded
 app.use(logger('combined'));
 
-Routes(app);
+Routes.business(app);
 
 app.listen(port);
 
