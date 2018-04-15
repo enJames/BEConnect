@@ -9,6 +9,7 @@ const ReviewsController = {
         const { reviewer, review } = req.body;
         const { businessId } = req.params;
         const theBusinessReviews = [];
+        let posted;
 
         if (!reviewer || !review) {
             return SendResponse(res, 400, 'Fill out all fields');
@@ -22,17 +23,15 @@ const ReviewsController = {
             review
         };
 
-        Reviews.push(dataToPersist);
-        console.log(Reviews);
-
         Reviews.forEach((eachReview) => {
             if (eachReview.businessId === parseInt(businessId, 10)) {
+                Reviews.push(dataToPersist);
                 theBusinessReviews.push(eachReview);
+                posted = true;
             }
         });
-
-        if (!theBusinessReviews) {
-            return SendResponse(res, 404, 'There are no reviews for this business');
+        if (!posted) {
+            return SendResponse(res, 404, 'Business does not exist');
         }
         return SendResponse(res, 201, 'Review posted!', theBusinessReviews);
     }
