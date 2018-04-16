@@ -11,6 +11,7 @@ const Routes = {
     },
     reviews: (app) => {
         app.post('/api/v1/businesses/:businessId/reviews', ReviewsController.create);
+        app.get('/api/v1/businesses/:businessId/reviews', ReviewsController.getReviews);
     }
 };
 
