@@ -34,6 +34,29 @@ const ReviewsController = {
             return SendResponse(res, 404, 'Business does not exist');
         }
         return SendResponse(res, 201, 'Review posted!', theBusinessReviews);
+    },
+    // Get all reviews of a business
+    getReviews: (req, res) => {
+        const { businessId } = req.params;
+        const theBusinessReviews = [];
+        let posted;
+
+        Reviews.forEach((eachReview) => {
+            if (eachReview.businessId === parseInt(businessId, 10)) {
+                console.log(eachReview);
+                theBusinessReviews.push(eachReview);
+                posted = true;
+            }
+        });
+        if (!posted) {
+            return SendResponse(res, 404, 'Business does not exist');
+        }
+        return SendResponse(
+            res,
+            200,
+            `Found ${theBusinessReviews.length} reviews for this business!`,
+            theBusinessReviews
+        );
     }
 };
 
