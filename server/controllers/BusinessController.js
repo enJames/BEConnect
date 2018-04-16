@@ -1,6 +1,5 @@
 import Models from '../models/Models';
 import SendResponse from '../SendResponse';
-import Filter from './Filter';
 
 const { Businesses } = Models;
 
@@ -76,7 +75,30 @@ const BusinessController = {
     // Get all businesses
     getBusinesses: (req, res) => {
         if (Object.keys(req.query).length !== 0) {
-            return Filter(req, res);
+            const { location, category } = req.query;
+            const theBusinesses = [];
+
+            let theQuery;
+
+            if (location) {
+                theQuery = location;
+                Businesses.forEach((business) => {
+                    if (business.state === theQuery) {
+                        theBusinesses.push(business);
+                    }
+                });
+            } else if (category) {
+                theQuery = category;
+                Businesses.forEach((business) => {
+                    if (business.category === theQuery) {
+                        theBusinesses.push(business);
+                    }
+                });
+            }
+            if (theBusinesses.length === 0) {
+                return SendResponse(res, 404, `There are currently no businesses in ${theQuery}`);
+            }
+            return SendResponse(res, 200, `Found ${theBusinesses.length} businesses`, theBusinesses);
         }
         const message = `Found ${Businesses.length} businesses`;
         return SendResponse(res, 200, message, Businesses);
