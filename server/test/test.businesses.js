@@ -259,3 +259,40 @@ describe('GET ALL BUSINESS TESTS', () => {
         });
     });
 });
+
+describe('FILTER BY LOCATION TESTS', () => {
+    describe('When a user sends a GET request to /api/v1/businesses?<location>', () => {
+        it('Response message should equal "Found 1 businesses"', (done) => {
+            chai.request(app)
+                .get('/api/v1/businesses?location=Lagos')
+                .end((req, res) => {
+                    assert.equal(res.body.message, 'Found 1 businesses');
+                    done();
+                });
+        });
+        it('It should return 1 business', (done) => {
+            chai.request(app)
+                .get('/api/v1/businesses?location=Lagos')
+                .end((req, res) => {
+                    res.body.responseObject.length.should.equal(1);
+                    done();
+                });
+        });
+        it('It should return a 404 status if there is no business with the search location', (done) => {
+            chai.request(app)
+                .get('/api/v1/businesses?location=Enugu')
+                .end((req, res) => {
+                    res.should.have.status(404);
+                    done();
+                });
+        });
+        it('It should return a 404 status if no search parameter is defined', (done) => {
+            chai.request(app)
+                .get('/api/v1/businesses?location=')
+                .end((req, res) => {
+                    res.should.have.status(404);
+                    done();
+                });
+        });
+    });
+});
