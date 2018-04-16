@@ -43,7 +43,6 @@ const ReviewsController = {
 
         Reviews.forEach((eachReview) => {
             if (eachReview.businessId === parseInt(businessId, 10)) {
-                console.log(eachReview);
                 theBusinessReviews.push(eachReview);
                 posted = true;
             }
