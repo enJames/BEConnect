@@ -1,5 +1,6 @@
 import Models from '../models/Models';
 import SendResponse from '../SendResponse';
+import Filter from './Filter';
 
 const { Businesses } = Models;
 
@@ -74,6 +75,9 @@ const BusinessController = {
     },
     // Get all businesses
     getBusinesses: (req, res) => {
+        if (Object.keys(req.query).length !== 0) {
+            return Filter(req, res);
+        }
         const message = `Found ${Businesses.length} businesses`;
         return SendResponse(res, 200, message, Businesses);
     }
