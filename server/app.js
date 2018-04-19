@@ -13,6 +13,7 @@ app.use(logger('combined'));
 
 Routes.businesses(app);
 Routes.reviews(app);
+Routes.documentation(app);
 
 app.listen(port);
 
