@@ -1,9 +1,5 @@
-import swaggerUi from 'swagger-ui-express';
 import BusinessController from '../controllers/BusinessController';
 import ReviewsController from '../controllers/ReviewsController';
-
-const { serve, setup } = swaggerUi;
-const swagger = require('../swagger.json');
 
 const Routes = {
     businesses: (app) => {
@@ -15,9 +11,6 @@ const Routes = {
     },
     reviews: (app) => {
         app.post('/api/v1/businesses/:businessId/reviews', ReviewsController.create);
-    },
-    documentation: (app) => {
-        app.get('/api/v1/documentation', serve, setup(swagger));
     }
 };
 
