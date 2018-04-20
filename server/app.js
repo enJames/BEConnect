@@ -19,7 +19,6 @@ app.use(bodyParser.json()); // parses application/json
 app.use(urlencoded); // parses application/x-www.form-urlencoded
 app.use(logger('combined'));
 app.use('/api/v1/businesses', Routes.BusinessesRoutes);
-app.use('/api/v1/businesses/:businessId/reviews', Routes.ReviewsRoutes);
 
 app.listen(port);
 
