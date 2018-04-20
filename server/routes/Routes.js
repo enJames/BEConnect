@@ -3,7 +3,6 @@ import BusinessController from '../controllers/BusinessController';
 import ReviewsController from '../controllers/ReviewsController';
 
 const BusinessesRoutes = express.Router();
-const ReviewsRoutes = express.Router();
 const UsersRoutes = express.Router();
 
 /*
@@ -28,12 +27,12 @@ BusinessesRoutes.delete('/:businessId', BusinessController.remove);
 BusinessesRoutes.get('/:businessId', BusinessController.getBusiness);
 BusinessesRoutes.get('/', BusinessController.getBusinesses);
 
-// Reviews Routes
-ReviewsRoutes.post('/', ReviewsController.create);
+// Business Reviews Routes
+BusinessesRoutes.post('/:businessId/reviews', ReviewsController.create);
+BusinessesRoutes.get('/:businessId/reviews', ReviewsController.getReviews);
 
 const Routes = {
     BusinessesRoutes,
-    ReviewsRoutes,
     UsersRoutes
 };
 
