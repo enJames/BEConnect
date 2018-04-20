@@ -30,6 +30,7 @@ BusinessesRoutes.get('/', BusinessController.getBusinesses);
 // Business Reviews Routes
 BusinessesRoutes.post('/:businessId/reviews', ReviewsController.create);
 BusinessesRoutes.get('/:businessId/reviews', ReviewsController.getReviews);
+BusinessesRoutes.get('/:businessId/reviews/:reviewId', ReviewsController.getReview);
 
 const Routes = {
     BusinessesRoutes,
