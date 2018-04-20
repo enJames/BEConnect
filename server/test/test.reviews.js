@@ -11,7 +11,7 @@ describe('CREATE REVIEWS TESTS', () => {
     describe('When a user sends a POST request to /api/v1/businesses/:businessId/reviews', () => {
         it('It should return a 201 status', (done) => {
             chai.request(app)
-                .post('/api/v1/businesses/3/reviews')
+                .post('/api/v1/businesses/1/reviews')
                 .send({
                     reviewer: 'Jossy Balliard',
                     review: 'This is a post review test'
@@ -35,7 +35,7 @@ describe('CREATE REVIEWS TESTS', () => {
         });
         it('Response message should equal "Review posted!"', (done) => {
             chai.request(app)
-                .post('/api/v1/businesses/4/reviews')
+                .post('/api/v1/businesses/1/reviews')
                 .send({
                     reviewer: 'Jazril spaniard',
                     review: 'This is just yet, another post review test'
