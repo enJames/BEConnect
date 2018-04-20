@@ -1,0 +1,220 @@
+swagger: "2.0"
+
+info:
+  version: 1.0.0
+  title: BEConnect
+  description: BEConnect provides a platform that brings businesses and individuals together. This platform creates awareness for businesses and gives the users the ability to write reviews about the businesses they have interacted with.
+
+schemes:
+  - https
+host: localhost:8000
+basePath: /api/v1
+
+paths:
+  /businesses:
+    post:
+      tags:
+      - "Businesses"
+      summary: "Register a business"
+      description: ""
+      operationId: 'BusinessController.create'
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "The business object containing business details that needs to be added to the list of registered businesses"
+        required: true
+        schema:
+          $ref: '#/definitions/business'
+      responses:
+        201:
+          description: "Registration successful!"
+        400:
+          description: 'Business could not be registered'
+    get:
+      tags:
+      - "Businesses"
+      summary: "Get all businesses"
+      description: "Returns a list of all registered businesses"
+      operationId: 'BusinessController.getBusinesses'
+      produces:
+      - 'application/json'
+      parameters: []
+      responses:
+        200:
+          description: "Found businesses"
+
+  /businesses/{businessId}:
+    get:
+      tags:
+      - "Business"
+      summary: "Get a businesses"
+      description: "Returns a businesses. For a valid response try integer IDs with value >= 1 and <= 4"
+      operationId: 'BusinessController.getBusiness'
+      produces:
+      - 'application/json'
+      parameters:
+      - name: 'businessId'
+        in: 'path'
+        description: "ID of the business to fetch"
+        required: true
+        type: 'integer'
+      responses:
+        200:
+          description: "Business found"
+        404:
+          description: "Business not found"
+    put:
+      tags:
+      - 'Business'
+      summary: "Update a business"
+      description: "Update can only be done by a logged in user"
+      operationId: 'BusinessController.update'
+      produces:
+      - 'application/json'
+      parameters:
+      - name: 'businessId'
+        in: 'path'
+        description: "ID of the business to update"
+        required: true
+        type: 'integer'
+      - in: 'body'
+        name: 'body'
+        description: "object containing details of the business to update"
+        required: true
+        schema:
+          $ref: '#/definitions/business'
+      responses:
+        200:
+          description: "Business updated!"
+        404:
+          description: "Business not found"
+    delete:
+      tags:
+      - 'Business'
+      summary: "Delete a business"
+      description: "Deletion can only be done by a logged in user"
+      operationId: 'BusinessController.remove'
+      produces:
+      - 'application/json'
+      parameters:
+      - name: 'businessId'
+        in: 'path'
+        description: "ID of the business to delete"
+        required: true
+        type: 'integer'
+      responses:
+        202:
+          description: "Business deleted!"
+        404:
+          description: "Business not found"
+
+  /businesses/{businessId}/reviews:
+    post:
+      tags:
+      - 'Reviews'
+      summary: "Post a review"
+      description: ""
+      operationId: 'ReviewsController.create'
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+      - name: 'businessId'
+        in: 'path'
+        description: "ID of the business to post a review on"
+        required: true
+        type: 'integer'
+      - in: 'body'
+        name: 'body'
+        description: "object containing details review to be posted"
+        required: true
+        schema:
+          $ref: '#/definitions/review'
+      responses:
+        201:
+          description: "Registration successful!"
+        400:
+          description: 'Business could not be registered'
+    get:
+      tags:
+      - "Reviews"
+      summary: "Get all reviews of a business"
+      description: "Returns a list of all registered businesses"
+      operationId: 'ReviewsController.getReviews'
+      produces:
+      - 'application/json'
+      parameters:
+      - name: 'businessId'
+        in: 'path'
+        description: "ID of the business to update"
+        required: true
+        type: 'integer'
+      responses:
+        200:
+          description: "Found businesses"
+
+  /businesses/{businessId}/reviews/{reviewId}:
+    get:
+      tags:
+      - "Review"
+      summary: "Get a review of a business"
+      description: "Returns a review of a business"
+      operationId: 'ReviewsController.getReview'
+      produces:
+      - 'application/json'
+      parameters:
+      - name: 'businessId'
+        in: 'path'
+        description: "ID of the business to update"
+        required: true
+        type: 'integer'
+      - name: 'reviewId'
+        in: 'path'
+        description: "ID of the business review to retrieve"
+        required: true
+        type: 'integer'
+      responses:
+        200:
+          description: "Found review"
+        404:
+          description: "Review not found!"
+
+definitions:
+    business:
+        type: "object"
+        properties:
+            businessId:
+                type: "integer"
+            businessName:
+                type: "string"
+            category:
+                type: "string"
+            state:
+                type: "string"
+    review:
+        type: "object"
+        properties:
+            reviewId:
+                type: "integer"
+            businessId:
+                type: "integer"
+            reveiwer:
+                type: "string"
+            review:
+                type: "string"
+    user:
+        type: "object"
+        properties:
+            username:
+                type: "string"
+            businessName:
+                type: "string"
+            category:
+                type: "string"
+            state:
+                type: "string"
