@@ -66,7 +66,11 @@ const ReviewsController = {
         let exists;
 
         Reviews.forEach((eachReview) => {
-            if ((eachReview.businessId === parseInt(businessId, 10)) && eachReview.reviewId === parseInt(reviewId, 10)) {
+            if (
+                (eachReview.businessId === parseInt(businessId, 10))
+                &&
+                eachReview.reviewId === parseInt(reviewId, 10)
+            ) {
                 theBusinessReviews.push(eachReview);
             }
         });
