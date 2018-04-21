@@ -18,7 +18,11 @@ swaggerTools.initializeMiddleware(swaggerDoc, (middleware) => {
 app.use(bodyParser.json()); // parses application/json
 app.use(urlencoded); // parses application/x-www.form-urlencoded
 app.use(logger('combined'));
+
+// Business Routes
 app.use('/api/v1/businesses', Routes.BusinessesRoutes);
+// User routes
+app.use('/api/v1/auth', Routes.UsersRoutes);
 
 app.listen(port);
 

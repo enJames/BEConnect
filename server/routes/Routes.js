@@ -1,6 +1,7 @@
 import express from 'express';
 import BusinessController from '../controllers/BusinessController';
 import ReviewsController from '../controllers/ReviewsController';
+import UsersController from '../controllers/UsersController';
 
 const BusinessesRoutes = express.Router();
 const UsersRoutes = express.Router();
@@ -31,6 +32,9 @@ BusinessesRoutes.get('/', BusinessController.getBusinesses);
 BusinessesRoutes.post('/:businessId/reviews', ReviewsController.create);
 BusinessesRoutes.get('/:businessId/reviews', ReviewsController.getReviews);
 BusinessesRoutes.get('/:businessId/reviews/:reviewId', ReviewsController.getReview);
+
+// User Routes
+UsersRoutes.post('/signup', UsersController.create);
 
 const Routes = {
     BusinessesRoutes,
