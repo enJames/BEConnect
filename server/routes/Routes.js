@@ -19,7 +19,10 @@ BusinessesRoutes.get('/:businessId/reviews', ReviewsController.getReviews);
 BusinessesRoutes.get('/:businessId/reviews/:reviewId', ReviewsController.getReview);
 
 // User Routes
+// Sign up route
 UsersRoutes.post('/signup', UsersController.create);
+// Login route
+UsersRoutes.post('/login', UsersController.login);
 
 const Routes = {
     BusinessesRoutes,

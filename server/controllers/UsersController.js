@@ -32,6 +32,25 @@ const UsersController = {
         Users.push(dataToPersist);
 
         return SendResponse(res, 201, 'Your account has been created');
+    },
+    login: (req, res) => {
+        const { email, password } = req.body;
+        let exists;
+
+        if (!email || !password) {
+            return SendResponse(res, 400, 'Fill out all fields');
+        }
+
+        Users.forEach((user) => {
+            if ((user.email === email) && (user.password === password)) {
+                exists = true;
+            }
+        });
+
+        if (!exists) {
+            return SendResponse(res, 401, 'Credentials do not match');
+        }
+        return SendResponse(res, 200, `Welcome ${email}`);
     }
 };
 
