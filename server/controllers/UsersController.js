@@ -51,6 +51,22 @@ const UsersController = {
             return SendResponse(res, 401, 'Credentials do not match');
         }
         return SendResponse(res, 200, `Welcome ${email}`);
+    },
+    remove: (req, res) => {
+        const { userId } = req.params;
+        let exists;
+
+        Users.forEach((user, index) => {
+            if (user.userId === parseInt(userId, 10)) {
+                Users.splice(index, 1);
+                exists = true;
+            }
+        });
+
+        if (!exists) {
+            return SendResponse(res, 404, 'There was an error');
+        }
+        return SendResponse(res, 200, 'Account deleted');
     }
 };
 
