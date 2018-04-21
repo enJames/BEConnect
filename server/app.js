@@ -10,17 +10,19 @@ const urlencoded = bodyParser.urlencoded({ extended: false });
 const swaggerDoc = YAML.load('swagger.yaml');
 const port = parseInt(process.env.PORT, 10) || 8000;
 
-app.use(bodyParser.json()); // parses application/json
-app.use(urlencoded); // parses application/x-www.form-urlencoded
-app.use(logger('combined'));
-
 swaggerTools.initializeMiddleware(swaggerDoc, (middleware) => {
     // Serve the Swagger documents and Swagger UI
     app.use(middleware.swaggerUi());
 });
 
-Routes.businesses(app);
-Routes.reviews(app);
+app.use(bodyParser.json()); // parses application/json
+app.use(urlencoded); // parses application/x-www.form-urlencoded
+app.use(logger('combined'));
+
+// Business Routes
+app.use('/api/v1/businesses', Routes.BusinessesRoutes);
+// User routes
+app.use('/api/v1/auth', Routes.UsersRoutes);
 
 app.listen(port);
 
