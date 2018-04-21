@@ -56,6 +56,7 @@ const ReviewsController = {
             if (!exists) {
                 return SendResponse(res, 404, 'Business does not exist');
             }
+            return SendResponse(res, 404, 'No review for this business yet');
         }
         return SendResponse(res, 200, `Found ${theBusinessReviews.length} reviews`, theBusinessReviews);
     },

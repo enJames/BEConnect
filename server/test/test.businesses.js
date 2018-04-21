@@ -241,19 +241,19 @@ describe('GET ALL BUSINESS TESTS', () => {
                     done();
                 });
         });
-        it('Response message should equal "Found 4 businesses"', (done) => {
+        it('Response message should equal "Found 5 businesses"', (done) => {
             chai.request(app)
                 .get('/api/v1/businesses')
                 .end((req, res) => {
-                    assert.equal(res.body.message, 'Found 4 businesses');
+                    assert.equal(res.body.message, 'Found 5 businesses');
                     done();
                 });
         });
-        it('It should return 4 businesses', (done) => {
+        it('It should return 5 businesses', (done) => {
             chai.request(app)
                 .get('/api/v1/businesses')
                 .end((req, res) => {
-                    res.body.responseObject.length.should.equal(4);
+                    res.body.responseObject.length.should.equal(5);
                     done();
                 });
         });

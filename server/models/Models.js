@@ -23,6 +23,12 @@ const Models = {
             businessName: 'Dreamzone Limited',
             category: 'Hospitality',
             state: 'Kano'
+        },
+        {
+            businessId: 5,
+            businessName: 'Galactisa Industries',
+            category: 'Health',
+            state: 'Kwara'
         }
     ],
     Reviews: [
