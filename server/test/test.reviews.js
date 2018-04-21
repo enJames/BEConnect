@@ -45,7 +45,7 @@ describe('CREATE REVIEWS TESTS', () => {
                     done();
                 });
         });
-        it('It should return a 400 if a field is not set."', (done) => {
+        it('It should return a 400 if a field is not set.', (done) => {
             chai.request(app)
                 .post('/api/v1/businesses/1/reviews')
                 .send({
@@ -90,6 +90,66 @@ describe('CREATE REVIEWS TESTS', () => {
                 })
                 .end((req, res) => {
                     assert.equal(res.body.message, 'Business does not exist');
+                    done();
+                });
+        });
+    });
+    describe('When a user sends a GET request to /api/v1/businesses/:businessId/reviews:', () => {
+        it('It should return all reviews for the business.', (done) => {
+            chai.request(app)
+                .get('/api/v1/businesses/1/reviews')
+                .end((req, res) => {
+                    res.should.have.status(200);
+                    done();
+                });
+        });
+        it('It should return a 404 status if there are no reviews for the business.', (done) => {
+            chai.request(app)
+                .get('/api/v1/businesses/5/reviews')
+                .end((req, res) => {
+                    res.should.have.status(404);
+                    done();
+                });
+        });
+        it('It should return the message "No review for this business yet".', (done) => {
+            chai.request(app)
+                .get('/api/v1/businesses/5/reviews')
+                .end((req, res) => {
+                    assert.equal(res.body.message, 'No review for this business yet');
+                    done();
+                });
+        });
+        it('It should return a 404 status if the reviewed business does not exist.', (done) => {
+            chai.request(app)
+                .get('/api/v1/businesses/40/reviews')
+                .end((req, res) => {
+                    res.should.have.status(404);
+                    done();
+                });
+        });
+    });
+    describe('When a user sends a GET request to /api/v1/businesses/:businessId/reviews/:reviewId', () => {
+        it('It should return a particular review for the business.', (done) => {
+            chai.request(app)
+                .get('/api/v1/businesses/1/reviews/10')
+                .end((req, res) => {
+                    res.should.have.status(200);
+                    done();
+                });
+        });
+        it('It should return 404 status if the reviewed business no longer exists.', (done) => {
+            chai.request(app)
+                .get('/api/v1/businesses/40/reviews/40')
+                .end((req, res) => {
+                    res.should.have.status(404);
+                    done();
+                });
+        });
+        it('It should return 404 status if the particular review does not exist but the business does.', (done) => {
+            chai.request(app)
+                .get('/api/v1/businesses/1/reviews/40')
+                .end((req, res) => {
+                    res.should.have.status(404);
                     done();
                 });
         });
