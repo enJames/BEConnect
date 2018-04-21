@@ -23,6 +23,8 @@ BusinessesRoutes.get('/:businessId/reviews/:reviewId', ReviewsController.getRevi
 UsersRoutes.post('/signup', UsersController.create);
 // Login route
 UsersRoutes.post('/login', UsersController.login);
+// Delete Account route
+UsersRoutes.delete('/user/:userId', UsersController.remove);
 
 const Routes = {
     BusinessesRoutes,
