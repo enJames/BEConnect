@@ -18,7 +18,7 @@ const UsersModel = (sequelize, DataTypes) => {
         }
     }, { freezeTableName: true });
     UsersTable.associate = (models) => {
-        UsersTable.hasMany(models.BusinessesTable, {
+        UsersTable.hasMany(models.enbusinesses, {
             foreignKey: 'useridentifier',
             as: 'regbusinesses'
         });

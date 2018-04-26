@@ -8,8 +8,8 @@ const env = process.env.NODE_ENV || 'development'; // Use development if no envi
 const config = configJson[env];
 const db = {};
 
-// const sequelize = new Sequelize('postgres://Khing James Enejo:pass@localhost:5432/beconnect', config);
-
+const sequelize = new Sequelize('postgres://king:pass@localhost:5432/beconnect', config);
+/*
 let sequelize;
 
 if (config.use_env_variable) {
@@ -17,7 +17,7 @@ if (config.use_env_variable) {
 } else {
     sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
-
+*/
 fs
     .readdirSync(__dirname)
     .filter(file =>

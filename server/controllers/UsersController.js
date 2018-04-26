@@ -1,72 +1,73 @@
-import Models from '../models/Models';
-import SendResponse from '../SendResponse';
+import models from '../models/index';
+import UtilityFunctions from '../UtilityFunctions';
 
-const { Users } = Models;
+const { enusers, enbusinesses } = models;
+const { SendResponse } = UtilityFunctions;
 
 const UsersController = {
     create: (req, res) => {
         const { username, email, password } = req.body;
-        let exists;
 
         if (!username || !email || !password) {
             return SendResponse(res, 400, 'Fill out all fields');
         }
 
-        Users.forEach((user) => {
-            if ((user.username === username) || (user.email === email)) {
-                exists = true;
-            }
-        });
-
-        if (exists) {
-            return SendResponse(res, 409, 'User details already exists');
-        }
-
         const dataToPersist = {
-            userId: (Users.length + 1),
             username,
             email,
             password
         };
 
-        Users.push(dataToPersist);
-
-        return SendResponse(res, 201, 'Your account has been created');
+        enusers
+            .findOrCreate({ where: { email }, defaults: dataToPersist })
+            .spread((user, created) => {
+                if (!created) {
+                    return SendResponse(res, 409, 'Email already exists');
+                }
+                return SendResponse(res, 201, 'Sign up successful!');
+            })
+            .catch(error => SendResponse(res, 500, 'There was an error', error));
     },
     login: (req, res) => {
         const { email, password } = req.body;
-        let exists;
 
         if (!email || !password) {
             return SendResponse(res, 400, 'Fill out all fields');
         }
 
-        Users.forEach((user) => {
-            if ((user.email === email) && (user.password === password)) {
-                exists = true;
-            }
-        });
-
-        if (!exists) {
-            return SendResponse(res, 401, 'Credentials do not match');
-        }
-        return SendResponse(res, 200, `Welcome ${email}`);
+        enusers
+            .findOne({ where: { email, password } })
+            .then((user) => {
+                if (!user) {
+                    return SendResponse(res, 401, 'Credentials do not match');
+                }
+                return SendResponse(res, 200, `Welcome ${user.dataValues.username}`);
+            })
+            .catch(() => SendResponse(res, 500, 'There was a problem'));
     },
     remove: (req, res) => {
-        const { userId } = req.params;
-        let exists;
+        const { username } = req.params;
 
-        Users.forEach((user, index) => {
-            if (user.userId === parseInt(userId, 10)) {
-                Users.splice(index, 1);
-                exists = true;
-            }
-        });
-
-        if (!exists) {
-            return SendResponse(res, 404, 'There was an error');
-        }
-        return SendResponse(res, 200, 'Account deleted');
+        enusers
+            .destroy({ where: { username } })
+            .then((deleted) => {
+                if (deleted === 0) {
+                    return SendResponse(res, 404, `${username} does not exist`);
+                }
+                return SendResponse(res, 200, `${username} has been deleted`);
+            })
+            .catch(() => SendResponse(res, 500, 'There was a problem'));
+    },
+    list: (req, res) => {
+        enusers
+            .findAll({
+                include: [{
+                    model: enbusinesses,
+                    as: 'regbusinesses'
+                }]
+            })
+            .then(users => SendResponse(res, 200, 'All users', users))
+            .catch(error => SendResponse(res, 500, 'There was a problem', error));
     }
 };
 

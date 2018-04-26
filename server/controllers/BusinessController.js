@@ -1,107 +1,123 @@
-import Models from '../models/Models';
-import SendResponse from '../SendResponse';
+import models from '../models/index';
+import UtilityFunctions from '../UtilityFunctions';
 
-const { Businesses } = Models;
+const { enbusinesses } = models;
+const { SendResponse, LocationFilter } = UtilityFunctions;
 
 const BusinessController = {
-    // BUSINESS ROUTES
     // Register a business
     create: (req, res) => {
-        const { businessName, category, state } = req.body;
+        const {
+            businessname,
+            category,
+            state,
+            useridentifier
+        } = req.body;
 
         // Validation of user input
-        if (!businessName || !category || !state) {
+        if (!businessname || !category || !state) {
             return SendResponse(res, 400, 'Fill out all fields');
         }
         const dataToPersist = {
-            id: (Businesses.length + 1),
-            businessName,
+            businessname,
+            category,
+            state,
+            useridentifier
+        };
+
+        // Persist successful validation data to database
+        enbusinesses
+            .findOrCreate({ where: { businessname }, defaults: dataToPersist })
+            .spread((business, created) => {
+                // Send a response after data persistence to database
+                if (!created) {
+                    return SendResponse(res, 409, 'Business name already exists');
+                }
+                return SendResponse(res, 201, `${businessname} registered successfully`, business);
+            })
+            .catch(error => SendResponse(res, 500, 'There was a problem', error));
+    },
+    // Update business
+    update: (req, res) => {
+        const { businessId } = req.params;
+        const {
+            businessname,
+            category,
+            state
+        } = req.body;
+
+        // Validation of user input
+        if (!businessname || !category || !state) {
+            return SendResponse(res, 400, 'Fill out all fields');
+        }
+        const dataToPersist = {
+            businessname,
             category,
             state
         };
 
-        // Persist successful validation data to database
-        Businesses.push(dataToPersist);
-
-        // Send a response after data persistence to database
-        return SendResponse(res, 201, 'Registration successful!', Businesses);
-    },
-    // Update business
-    update: (req, res) => {
-        let updatedBusiness;
-
-        Businesses.forEach((business) => {
-            if (business.businessId === parseInt(req.params.businessId, 10)) {
-                business = { ...business, ...req.body };
-
-                updatedBusiness = business;
-            }
-        });
-        if (!updatedBusiness) {
-            return SendResponse(res, 404, 'Business not found!');
-        }
-        return SendResponse(res, 200, 'Business updated!', updatedBusiness);
+        enbusinesses
+            .update(dataToPersist, { where: { id: businessId } })
+            .then(() => SendResponse(res, 200, 'Business updated successfully'))
+            .catch(error => SendResponse(res, 500, 'There was a problem', error));
     },
     // Remove a business
     remove: (req, res) => {
-        let removedBusiness;
+        const { businessId } = req.params;
 
-        Businesses.forEach((business, index) => {
-            if (business.businessId === parseInt(req.params.businessId, 10)) {
-                Businesses.splice(index, 1);
-
-                removedBusiness = business;
-            }
-        });
-        if (!removedBusiness) {
-            return SendResponse(res, 404, 'Business not found!');
-        }
-        return SendResponse(res, 202, 'Business deleted!', Businesses);
+        enbusinesses
+            .destroy({ where: { id: businessId } })
+            .then((deleted) => {
+                if (deleted === 0) {
+                    return SendResponse(res, 404, 'Business does not exist');
+                }
+                return SendResponse(res, 200, 'Business deleted successfully');
+            })
+            .catch(error => SendResponse(res, 500, 'There was a problem', error));
     },
     // Get a business
     getBusiness: (req, res) => {
-        let theBusiness;
+        const { businessId } = req.params;
 
-        Businesses.forEach((business) => {
-            if (business.businessId === parseInt(req.params.businessId, 10)) {
-                theBusiness = business;
-            }
-        });
-        if (!theBusiness) {
-            return SendResponse(res, 404, 'Business not found!');
-        }
-        return SendResponse(res, 200, 'Business found!', theBusiness);
+        enbusinesses
+            .findById(parseInt(businessId, 10))
+            .then((user) => {
+                if (!user) {
+                    return SendResponse(res, 404, 'Business not found!');
+                }
+                return SendResponse(res, 200, 'Business found!', user.dataValues);
+            })
+            .catch(() => SendResponse(res, 500, 'There was a problem'));
     },
     // Get all businesses
     getBusinesses: (req, res) => {
         if (Object.keys(req.query).length !== 0) {
             const { location, category } = req.query;
-            const theBusinesses = [];
-
-            let theQuery;
+            const searchOptions = {};
 
             if (location) {
-                theQuery = location;
-                Businesses.forEach((business) => {
-                    if (business.state === theQuery) {
-                        theBusinesses.push(business);
-                    }
-                });
+                searchOptions.state = location;
+                LocationFilter(res, enbusinesses, searchOptions, SendResponse, location);
             } else if (category) {
-                theQuery = category;
-                Businesses.forEach((business) => {
-                    if (business.category === theQuery) {
-                        theBusinesses.push(business);
-                    }
-                });
+                searchOptions.category = category;
+                LocationFilter(res, enbusinesses, searchOptions, SendResponse, category);
+            } else {
+                LocationFilter(res, enbusinesses, searchOptions, SendResponse, category);
             }
-            if (theBusinesses.length === 0) {
-                return SendResponse(res, 404, `There are currently no businesses in ${theQuery}`);
-            }
-            return SendResponse(res, 200, `Found ${theBusinesses.length} businesses`, theBusinesses);
+        } else {
+            enbusinesses
+                .findAll()
+                .then((businesses) => {
+                    const allBusinesses = [];
+
+                    businesses.forEach(eachBusiness =>
+                        allBusinesses.push(eachBusiness.dataValues));
+
+                    const message = `Found ${allBusinesses.length} businesses`;
+                    return SendResponse(res, 200, message, allBusinesses);
+                })
+                .catch(error => SendResponse(res, 500, 'There was an error', error));
         }
-        const message = `Found ${Businesses.length} businesses`;
-        return SendResponse(res, 200, message, Businesses);
     }
 };
 

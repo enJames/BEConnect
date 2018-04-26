@@ -15,11 +15,11 @@ const BusinessesModel = (sequelize, DataTypes) => {
         }
     }, { freezeTableName: true });
     BusinessesTable.associate = (models) => {
-        BusinessesTable.belongsTo(models.UsersTable, {
+        BusinessesTable.belongsTo(models.enusers, {
             foreignKey: 'useridentifier',
             onDelete: 'CASCADE'
         });
-        BusinessesTable.hasMany(models.BusinessReviewsTable, {
+        BusinessesTable.hasMany(models.enbusinessreviews, {
             foreignKey: 'businessidentifier',
             as: 'businessreviews'
         });
