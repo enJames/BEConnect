@@ -1,7 +1,7 @@
 import models from '../models/index';
 import UtilityFunctions from '../UtilityFunctions';
 
-const { enusers, enbusinesses } = models;
+const { enusers } = models;
 const { SendResponse } = UtilityFunctions;
 
 const UsersController = {
@@ -18,13 +18,14 @@ const UsersController = {
             password
         };
 
+        // Persist successful validation data to database
         enusers
             .findOrCreate({ where: { email }, defaults: dataToPersist })
             .spread((user, created) => {
                 if (!created) {
                     return SendResponse(res, 409, 'Email already exists');
                 }
-                return SendResponse(res, 201, 'Sign up successful!');
+                return SendResponse(res, 201, 'Sign up successful');
             })
             .catch(error => SendResponse(res, 500, 'There was an error', error));
     },
@@ -42,8 +43,7 @@ const UsersController = {
                     return SendResponse(res, 401, 'Credentials do not match');
                 }
                 return SendResponse(res, 200, `Welcome ${user.dataValues.username}`);
-            })
-            .catch(() => SendResponse(res, 500, 'There was a problem'));
+            });
     },
     remove: (req, res) => {
         const { username } = req.params;
@@ -55,19 +55,7 @@ const UsersController = {
                     return SendResponse(res, 404, `${username} does not exist`);
                 }
                 return SendResponse(res, 200, `${username} has been deleted`);
-            })
-            .catch(() => SendResponse(res, 500, 'There was a problem'));
-    },
-    list: (req, res) => {
-        enusers
-            .findAll({
-                include: [{
-                    model: enbusinesses,
-                    as: 'regbusinesses'
-                }]
-            })
-            .then(users => SendResponse(res, 200, 'All users', users))
-            .catch(error => SendResponse(res, 500, 'There was a problem', error));
+            });
     }
 };
 

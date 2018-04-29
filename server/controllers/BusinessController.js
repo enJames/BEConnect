@@ -33,7 +33,7 @@ const BusinessController = {
                 if (!created) {
                     return SendResponse(res, 409, 'Business name already exists');
                 }
-                return SendResponse(res, 201, `${businessname} registered successfully`, business);
+                return SendResponse(res, 201, `${businessname} has been registered successfully`, business);
             })
             .catch(error => SendResponse(res, 500, 'There was a problem', error));
     },
@@ -50,15 +50,23 @@ const BusinessController = {
         if (!businessname || !category || !state) {
             return SendResponse(res, 400, 'Fill out all fields');
         }
-        const dataToPersist = {
+        const dataToUpdate = {
             businessname,
             category,
             state
         };
 
         enbusinesses
-            .update(dataToPersist, { where: { id: businessId } })
-            .then(() => SendResponse(res, 200, 'Business updated successfully'))
+            .findById(businessId)
+            .then((business) => {
+                if (!business) {
+                    return SendResponse(res, 404, 'Business not found');
+                }
+                enbusinesses
+                    .update(dataToUpdate, { where: { id: businessId } })
+                    .then(() => SendResponse(res, 200, 'Business updated successfully'))
+                    .catch(error => SendResponse(res, 500, 'There was a problem u', error));
+            })
             .catch(error => SendResponse(res, 500, 'There was a problem', error));
     },
     // Remove a business
@@ -69,7 +77,7 @@ const BusinessController = {
             .destroy({ where: { id: businessId } })
             .then((deleted) => {
                 if (deleted === 0) {
-                    return SendResponse(res, 404, 'Business does not exist');
+                    return SendResponse(res, 404, 'Business not found');
                 }
                 return SendResponse(res, 200, 'Business deleted successfully');
             })
@@ -83,9 +91,9 @@ const BusinessController = {
             .findById(parseInt(businessId, 10))
             .then((user) => {
                 if (!user) {
-                    return SendResponse(res, 404, 'Business not found!');
+                    return SendResponse(res, 404, 'Business not found');
                 }
-                return SendResponse(res, 200, 'Business found!', user.dataValues);
+                return SendResponse(res, 200, 'Business found', user.dataValues);
             })
             .catch(() => SendResponse(res, 500, 'There was a problem'));
     },
@@ -95,6 +103,8 @@ const BusinessController = {
             const { location, category } = req.query;
             const searchOptions = {};
 
+            // if either location or category is set add as searchOptions property.
+            // Otherwise leave empty
             if (location) {
                 searchOptions.state = location;
                 LocationFilter(res, enbusinesses, searchOptions, SendResponse, location);
@@ -115,8 +125,7 @@ const BusinessController = {
 
                     const message = `Found ${allBusinesses.length} businesses`;
                     return SendResponse(res, 200, message, allBusinesses);
-                })
-                .catch(error => SendResponse(res, 500, 'There was an error', error));
+                });
         }
     }
 };

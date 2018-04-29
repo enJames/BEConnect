@@ -28,8 +28,7 @@ const UtilityFunctions = {
 
                 const message = `Found ${allBusinesses.length} businesses in ${filterQuery}`;
                 return ResponseFunction(res, 200, message, allBusinesses);
-            })
-            .catch(error => ResponseFunction(res, 500, 'There was an error', error));
+            });
     },
     RetrieveReviews: (res, model, AsscModel, ResponseFunction, businessId, reviewId) => {
         model
@@ -43,21 +42,28 @@ const UtilityFunctions = {
                 }]
             })
             .then((business) => {
-                const { businessreviews } = business;
+                if (business) {
+                    const { businessreviews } = business;
 
-                if (reviewId) {
-                    for (let i = 0; i < businessreviews.length; i += 1) {
-                        if (businessreviews[i].id === parseInt(reviewId, 10)) {
-                            return ResponseFunction(res, 200, 'Review', businessreviews[i]);
+                    // If a review ID is passed in the url
+                    if (reviewId) {
+                        const theReview = [];
+
+                        for (let i = 0; i < businessreviews.length; i += 1) {
+                            if (businessreviews[i].id === parseInt(reviewId, 10)) {
+                                theReview.push(businessreviews[i]);
+                                break;
+                            }
                         }
+                        if (theReview.length > 0) {
+                            return ResponseFunction(res, 200, 'Review', theReview);
+                        }
+                        return ResponseFunction(res, 404, 'Review not found');
                     }
-                    return ResponseFunction(res, 404, 'Review not found');
-                } else if (!business) {
-                    return ResponseFunction(res, 404, 'Business does not exist');
+                    return ResponseFunction(res, 200, 'All reviews', businessreviews);
                 }
-                return ResponseFunction(res, 200, 'All reviews', businessreviews);
-            })
-            .catch(error => ResponseFunction(res, 500, 'There was a problem', error));
+                return ResponseFunction(res, 404, 'Business not found');
+            });
     }
 };
 

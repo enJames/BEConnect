@@ -24,8 +24,6 @@ BusinessesRoutes.get('/:businessId/reviews/:reviewId', ReviewsController.getRevi
 UsersRoutes.post('/signup', UsersController.create);
 // Login route
 UsersRoutes.post('/login', UsersController.login);
-// Login route
-UsersRoutes.get('/list', UsersController.list);
 // Delete Account route
 UsersRoutes.delete('/user/:username', UsersController.remove);
 

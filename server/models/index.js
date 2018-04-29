@@ -1,14 +1,15 @@
 import fs from 'fs';
 import path from 'path';
 import Sequelize from 'sequelize';
-import configJson from '../config/config';
+// import configJson from '../config/config';
 
+// delete process.env.NODE_ENV;
 const basename = path.basename(module.filename);
-const env = process.env.NODE_ENV || 'development'; // Use development if no environment is specified
-const config = configJson[env];
+// const env = process.env.NODE_ENV || 'development'; Use development if no environment is specified
+// const config = configJson[env];
 const db = {};
 
-const sequelize = new Sequelize('postgres://king:pass@localhost:5432/beconnect', config);
+const sequelize = new Sequelize('postgres://king:pass@localhost:5432/beconnect');
 /*
 let sequelize;
 
@@ -18,6 +19,7 @@ if (config.use_env_variable) {
     sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 */
+
 fs
     .readdirSync(__dirname)
     .filter(file =>

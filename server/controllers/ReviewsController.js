@@ -30,12 +30,12 @@ const ReviewsController = {
                     enbusinessreviews
                         .create(dataToPersist)
                         .then(reviews => SendResponse(res, 201, 'Review posted', reviews))
-                        .catch(error => SendResponse(res, 500, 'There was a problem', error.errors));
+                        .catch(error => SendResponse(res, 500, 'There was an error', error.errors));
                 } else {
-                    return SendResponse(res, 404, 'Business does not exist');
+                    return SendResponse(res, 404, 'Business not found');
                 }
             })
-            .catch(error => SendResponse(res, 500, 'There was a problem', error));
+            .catch(error => SendResponse(res, 500, 'There was an error', error));
     },
     getReviews: (req, res) => {
         const { businessId } = req.params;
