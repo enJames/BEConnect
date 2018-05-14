@@ -1,4 +1,5 @@
 import express from 'express';
+
 import BusinessController from '../controllers/BusinessController';
 import ReviewsController from '../controllers/ReviewsController';
 import UsersController from '../controllers/UsersController';
@@ -24,7 +25,7 @@ UsersRoutes.post('/signup', UsersController.create);
 // Login route
 UsersRoutes.post('/login', UsersController.login);
 // Delete Account route
-UsersRoutes.delete('/user/:userId', UsersController.remove);
+UsersRoutes.delete('/user/:username', UsersController.remove);
 
 const Routes = {
     BusinessesRoutes,

@@ -6,150 +6,203 @@ chai.use(chaiHttp);
 const { assert, should } = chai;
 should();
 
-// POST Business route tests
-describe('CREATE REVIEWS TESTS', () => {
-    describe('When a user sends a POST request to /api/v1/businesses/:businessId/reviews', () => {
-        it('It should return a 201 status', (done) => {
+// ADD test reviews
+describe('ADD REVIEWS', () => {
+    describe('Add test reviews"', () => {
+        it('On success(1):: return status:201, -- just post a review', (done) => {
             chai.request(app)
                 .post('/api/v1/businesses/1/reviews')
                 .send({
-                    reviewer: 'Jossy Balliard',
-                    review: 'This is a post review test'
+                    firstname: 'Mc Zilics',
+                    lastname: 'Rodrich',
+                    email: 'zilics@mansard.com',
+                    company: 'Mansard Limited',
+                    position: 'Marketing Manager',
+                    review: 'The business is awesome!'
                 })
                 .end((req, res) => {
                     res.should.have.status(201);
                     done();
                 });
         });
-        it('It should return an object', (done) => {
-            chai.request(app)
-                .post('/api/v1/businesses/4/reviews')
-                .send({
-                    reviewer: 'Anselem Pete',
-                    review: 'This is another post review test'
-                })
-                .end((req, res) => {
-                    res.body.should.be.an('object');
-                    done();
-                });
-        });
-        it('Response message should equal "Review posted!"', (done) => {
+        it('On success(2):: return status:201, -- just post a review', (done) => {
             chai.request(app)
                 .post('/api/v1/businesses/1/reviews')
                 .send({
-                    reviewer: 'Jazril spaniard',
-                    review: 'This is just yet, another post review test'
+                    firstname: 'Adimani',
+                    lastname: 'Olusegun',
+                    email: 'adimani@bluesky.com',
+                    company: 'Blue Sky Limited',
+                    position: 'Distribution Manager',
+                    review: 'A customer centric business.'
                 })
                 .end((req, res) => {
-                    assert.equal(res.body.message, 'Review posted!');
+                    res.should.have.status(201);
                     done();
                 });
         });
-        it('It should return a 400 if a field is not set.', (done) => {
+        it('On success(3):: return status:201, -- just post a review', (done) => {
             chai.request(app)
-                .post('/api/v1/businesses/1/reviews')
+                .post('/api/v1/businesses/3/reviews')
                 .send({
-                    reviewer: 'Moritz Scorn',
-                    review: ''
+                    firstname: 'Adiku',
+                    lastname: 'Oche',
+                    email: 'AOche@makeitnow.com',
+                    company: 'MakeItNow Limited',
+                    position: 'Operations Director',
+                    review: 'I wish I never did business with this people. Please stay away!'
+                })
+                .end((req, res) => {
+                    res.should.have.status(201);
+                    done();
+                });
+        });
+        it('On success(4):: return status:201, -- just post a review', (done) => {
+            chai.request(app)
+                .post('/api/v1/businesses/3/reviews')
+                .send({
+                    firstname: 'Zalico',
+                    lastname: 'Adamu',
+                    email: 'zalico@moonsure.com',
+                    company: 'Moonsure Limited',
+                    position: 'Marking Officer',
+                    review: 'They need to learn to be open minded.'
+                })
+                .end((req, res) => {
+                    res.should.have.status(201);
+                    done();
+                });
+        });
+    });
+});
+
+// POST Reviews route tests
+describe('POST REVIEWS TESTS', () => {
+    describe('When a user sends a POST request to /api/v1/businesses/:businessId/reviews', () => {
+        /* it('if a field is not set:: return status:400, msg:Fill out all fields', (done) => {
+            chai.request(app)
+                .post('/api/v1/businesses/2/reviews')
+                .send({
+                    firstname: 'Casandra',
+                    lastname: 'Oliver',
+                    company: 'Arik Ticketing Limited',
+                    position: 'Head of Operations',
+                    review: 'Purposeful in the approach to business. I love them.'
                 })
                 .end((req, res) => {
                     res.should.have.status(400);
-                    done();
-                });
-        });
-        it('It should return a message "Fill out all fields" if a field (or more) is/are not set', (done) => {
-            chai.request(app)
-                .post('/api/v1/businesses/1/reviews')
-                .send({
-                    reviewer: 'Moritz Scorn',
-                    review: ''
-                })
-                .end((req, res) => {
                     assert.equal(res.body.message, 'Fill out all fields');
                     done();
                 });
-        });
-        it('It should return a 404 if business does not exist or have no reviews."', (done) => {
+        }); */
+        it('On success:: return status:201, msg:Review posted', (done) => {
             chai.request(app)
-                .post('/api/v1/businesses/40/reviews')
+                .post('/api/v1/businesses/3/reviews')
                 .send({
-                    reviewer: 'Moritz Scorn',
-                    review: 'Just some test text again.'
+                    firstname: 'Casandra',
+                    lastname: 'Oliver',
+                    company: 'Arik Ticketing Limited',
+                    position: 'Head of Operations',
+                    review: 'Purposeful in the approach to business. I love them.'
                 })
                 .end((req, res) => {
-                    res.should.have.status(404);
+                    res.should.have.status(201);
+                    assert.equal(res.body.message, 'Review posted');
                     done();
                 });
         });
-        it('It should return a 404 if business have no reviews."', (done) => {
+        it('On error:: return status:500, msg:There was an error', (done) => {
             chai.request(app)
-                .post('/api/v1/businesses/40/reviews')
+                .post('/api/v1/businesses/3/reviews')
                 .send({
-                    reviewer: 'Moritz Scorn',
-                    review: 'Just some more text for testing'
+                    lastname: 'Mayor',
+                    company: 'Arik Ticketing Limited',
+                    position: 'Head of Operations',
+                    review: 'Purposeful in the approach to business. I love them.'
                 })
                 .end((req, res) => {
-                    assert.equal(res.body.message, 'Business does not exist');
+                    res.should.have.status(500);
+                    assert.equal(res.body.message, 'There was an error');
+                    done();
+                });
+        });
+        it('If business not found:: return status:404, msg:Business not found', (done) => {
+            chai.request(app)
+                .post('/api/v1/businesses/10/reviews')
+                .send({
+                    firstname: 'Casandra',
+                    lastname: 'Oliver',
+                    company: 'Arik Ticketing Limited',
+                    position: 'Head of Operations',
+                    review: 'Purposeful in the approach to business. I love them.'
+                })
+                .end((req, res) => {
+                    res.should.have.status(404);
+                    assert.equal(res.body.message, 'Business not found');
+                    done();
+                });
+        });
+        it('If business not found:: return status:500, msg:There was an error', (done) => {
+            chai.request(app)
+                .post('/api/v1/businesses/string/reviews')
+                .send({
+                    firstname: 'Casandra',
+                    lastname: 'Oliver',
+                    company: 'Arik Ticketing Limited',
+                    position: 'Head of Operations',
+                    review: 'Purposeful in the approach to business. I love them.'
+                })
+                .end((req, res) => {
+                    res.should.have.status(500);
+                    assert.equal(res.body.message, 'There was an error');
                     done();
                 });
         });
     });
-    describe('When a user sends a GET request to /api/v1/businesses/:businessId/reviews:', () => {
-        it('It should return all reviews for the business.', (done) => {
+});
+
+// Get a review route tests
+describe('GET A REVIEW TESTS', () => {
+    describe('When a user sends a GET request to "/api/v1/businesses/businessId/reviews/:reviewId"', () => {
+        it('if Business not found:: return status:404, msg:Business not found', (done) => {
             chai.request(app)
-                .get('/api/v1/businesses/1/reviews')
+                .get('/api/v1/businesses/10/reviews/1')
+                .end((req, res) => {
+                    res.should.have.status(404);
+                    assert.equal(res.body.message, 'Business not found');
+                    done();
+                });
+        });
+        it('if Review not found:: return status:404, msg:Review not found', (done) => {
+            chai.request(app)
+                .get('/api/v1/businesses/3/reviews/10')
+                .end((req, res) => {
+                    res.should.have.status(404);
+                    assert.equal(res.body.message, 'Review not found');
+                    done();
+                });
+        });
+        it('On success:: return status:200, msg:Review found', (done) => {
+            chai.request(app)
+                .get('/api/v1/businesses/1/reviews/1')
                 .end((req, res) => {
                     res.should.have.status(200);
-                    done();
-                });
-        });
-        it('It should return a 404 status if there are no reviews for the business.', (done) => {
-            chai.request(app)
-                .get('/api/v1/businesses/5/reviews')
-                .end((req, res) => {
-                    res.should.have.status(404);
-                    done();
-                });
-        });
-        it('It should return the message "No review for this business yet".', (done) => {
-            chai.request(app)
-                .get('/api/v1/businesses/5/reviews')
-                .end((req, res) => {
-                    assert.equal(res.body.message, 'No review for this business yet');
-                    done();
-                });
-        });
-        it('It should return a 404 status if the reviewed business does not exist.', (done) => {
-            chai.request(app)
-                .get('/api/v1/businesses/40/reviews')
-                .end((req, res) => {
-                    res.should.have.status(404);
+                    assert.equal(res.body.message, 'Review');
                     done();
                 });
         });
     });
-    describe('When a user sends a GET request to /api/v1/businesses/:businessId/reviews/:reviewId', () => {
-        it('It should return a particular review for the business.', (done) => {
+});
+
+// Get all reviews route tests
+describe('GET ALL REVIEWS TESTS', () => {
+    describe('When a user sends a GET request to /api/v1/businesses/:businessId/reviews', () => {
+        it('On success:: return status:200, msg:All Reviews', (done) => {
             chai.request(app)
-                .get('/api/v1/businesses/1/reviews/10')
+                .get('/api/v1/businesses/3/reviews')
                 .end((req, res) => {
                     res.should.have.status(200);
-                    done();
-                });
-        });
-        it('It should return 404 status if the reviewed business no longer exists.', (done) => {
-            chai.request(app)
-                .get('/api/v1/businesses/40/reviews/40')
-                .end((req, res) => {
-                    res.should.have.status(404);
-                    done();
-                });
-        });
-        it('It should return 404 status if the particular review does not exist but the business does.', (done) => {
-            chai.request(app)
-                .get('/api/v1/businesses/1/reviews/40')
-                .end((req, res) => {
-                    res.should.have.status(404);
+                    assert.equal(res.body.message, 'All reviews');
                     done();
                 });
         });
