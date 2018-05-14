@@ -6,50 +6,67 @@ chai.use(chaiHttp);
 const { assert, should } = chai;
 should();
 
+// ADD test reviews
 describe('ADD REVIEWS', () => {
     describe('Add test reviews"', () => {
-        it('On success:: return status:201, -- just post a review', (done) => {
+        it('On success(1):: return status:201, -- just post a review', (done) => {
             chai.request(app)
-                .post('/api/v1/businesses/4/reviews')
+                .post('/api/v1/businesses/1/reviews')
                 .send({
-                    reveiwer: 'Spindus Inclick',
-                    review: 'This is a post review test'
+                    firstname: 'Mc Zilics',
+                    lastname: 'Rodrich',
+                    email: 'zilics@mansard.com',
+                    company: 'Mansard Limited',
+                    position: 'Marketing Manager',
+                    review: 'The business is awesome!'
                 })
                 .end((req, res) => {
                     res.should.have.status(201);
                     done();
                 });
         });
-        it('On success:: return status:201, -- just post a review', (done) => {
+        it('On success(2):: return status:201, -- just post a review', (done) => {
             chai.request(app)
-                .post('/api/v1/businesses/4/reviews')
+                .post('/api/v1/businesses/1/reviews')
                 .send({
-                    reveiwer: 'Josh Paranda',
-                    review: 'Something underneath'
+                    firstname: 'Adimani',
+                    lastname: 'Olusegun',
+                    email: 'adimani@bluesky.com',
+                    company: 'Blue Sky Limited',
+                    position: 'Distribution Manager',
+                    review: 'A customer centric business.'
                 })
                 .end((req, res) => {
                     res.should.have.status(201);
                     done();
                 });
         });
-        it('On success:: return status:201, -- just post a review', (done) => {
+        it('On success(3):: return status:201, -- just post a review', (done) => {
             chai.request(app)
-                .post('/api/v1/businesses/4/reviews')
+                .post('/api/v1/businesses/3/reviews')
                 .send({
-                    reveiwer: 'Andrew lever',
-                    review: 'Something in here again'
+                    firstname: 'Adiku',
+                    lastname: 'Oche',
+                    email: 'AOche@makeitnow.com',
+                    company: 'MakeItNow Limited',
+                    position: 'Operations Director',
+                    review: 'I wish I never did business with this people. Please stay away!'
                 })
                 .end((req, res) => {
                     res.should.have.status(201);
                     done();
                 });
         });
-        it('On success:: return status:201, -- just post a review', (done) => {
+        it('On success(4):: return status:201, -- just post a review', (done) => {
             chai.request(app)
-                .post('/api/v1/businesses/4/reviews')
+                .post('/api/v1/businesses/3/reviews')
                 .send({
-                    reveiwer: 'Azilics Brosimos',
-                    review: 'Something Something Something Something'
+                    firstname: 'Zalico',
+                    lastname: 'Adamu',
+                    email: 'zalico@moonsure.com',
+                    company: 'Moonsure Limited',
+                    position: 'Marking Officer',
+                    review: 'They need to learn to be open minded.'
                 })
                 .end((req, res) => {
                     res.should.have.status(201);
@@ -62,25 +79,31 @@ describe('ADD REVIEWS', () => {
 // POST Reviews route tests
 describe('POST REVIEWS TESTS', () => {
     describe('When a user sends a POST request to /api/v1/businesses/:businessId/reviews', () => {
-        it('if a field is not set:: return status:400, msg:Fill out all fields', (done) => {
+        /* it('if a field is not set:: return status:400, msg:Fill out all fields', (done) => {
             chai.request(app)
-                .post('/api/v1/businesses/4/reviews')
+                .post('/api/v1/businesses/2/reviews')
                 .send({
-                    reveiwer: '',
-                    review: 'This is a post review test'
+                    firstname: 'Casandra',
+                    lastname: 'Oliver',
+                    company: 'Arik Ticketing Limited',
+                    position: 'Head of Operations',
+                    review: 'Purposeful in the approach to business. I love them.'
                 })
                 .end((req, res) => {
                     res.should.have.status(400);
                     assert.equal(res.body.message, 'Fill out all fields');
                     done();
                 });
-        });
+        }); */
         it('On success:: return status:201, msg:Review posted', (done) => {
             chai.request(app)
                 .post('/api/v1/businesses/3/reviews')
                 .send({
-                    reveiwer: 'Jossy Hamiltus',
-                    review: 'Adding some more test text'
+                    firstname: 'Casandra',
+                    lastname: 'Oliver',
+                    company: 'Arik Ticketing Limited',
+                    position: 'Head of Operations',
+                    review: 'Purposeful in the approach to business. I love them.'
                 })
                 .end((req, res) => {
                     res.should.have.status(201);
@@ -90,10 +113,12 @@ describe('POST REVIEWS TESTS', () => {
         });
         it('On error:: return status:500, msg:There was an error', (done) => {
             chai.request(app)
-                .post('/api/v1/businesses/4/reviews')
+                .post('/api/v1/businesses/3/reviews')
                 .send({
-                    reveiwer: 'Prosis Mayor',
-                    review: 'Adding some more test text'
+                    lastname: 'Mayor',
+                    company: 'Arik Ticketing Limited',
+                    position: 'Head of Operations',
+                    review: 'Purposeful in the approach to business. I love them.'
                 })
                 .end((req, res) => {
                     res.should.have.status(500);
@@ -105,8 +130,11 @@ describe('POST REVIEWS TESTS', () => {
             chai.request(app)
                 .post('/api/v1/businesses/10/reviews')
                 .send({
-                    reveiwer: 'Jossy Hamiltus',
-                    review: 'This is a post on business 10'
+                    firstname: 'Casandra',
+                    lastname: 'Oliver',
+                    company: 'Arik Ticketing Limited',
+                    position: 'Head of Operations',
+                    review: 'Purposeful in the approach to business. I love them.'
                 })
                 .end((req, res) => {
                     res.should.have.status(404);
@@ -118,8 +146,11 @@ describe('POST REVIEWS TESTS', () => {
             chai.request(app)
                 .post('/api/v1/businesses/string/reviews')
                 .send({
-                    reveiwer: 'Potiskum Mail',
-                    review: 'Shukuras tasilinga'
+                    firstname: 'Casandra',
+                    lastname: 'Oliver',
+                    company: 'Arik Ticketing Limited',
+                    position: 'Head of Operations',
+                    review: 'Purposeful in the approach to business. I love them.'
                 })
                 .end((req, res) => {
                     res.should.have.status(500);
@@ -153,7 +184,7 @@ describe('GET A REVIEW TESTS', () => {
         });
         it('On success:: return status:200, msg:Review found', (done) => {
             chai.request(app)
-                .get('/api/v1/businesses/4/reviews/1')
+                .get('/api/v1/businesses/1/reviews/1')
                 .end((req, res) => {
                     res.should.have.status(200);
                     assert.equal(res.body.message, 'Review');

@@ -5,6 +5,14 @@ const UsersModel = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             unique: true
         },
+        firstname: {
+            allowNull: false,
+            type: DataTypes.STRING
+        },
+        lastname: {
+            allowNull: false,
+            type: DataTypes.STRING
+        },
         email: {
             allowNull: false,
             type: DataTypes.STRING,
@@ -19,8 +27,8 @@ const UsersModel = (sequelize, DataTypes) => {
     }, { freezeTableName: true });
     UsersTable.associate = (models) => {
         UsersTable.hasMany(models.enbusinesses, {
-            foreignKey: 'useridentifier',
-            as: 'regbusinesses'
+            foreignKey: 'userIdentifier',
+            as: 'regBusinesses'
         });
     };
 

@@ -38,20 +38,20 @@ const UtilityFunctions = {
                 },
                 include: [{
                     model: AsscModel,
-                    as: 'businessreviews'
+                    as: 'businessReviews'
                 }]
             })
             .then((business) => {
                 if (business) {
-                    const { businessreviews } = business;
+                    const { businessReviews } = business;
 
                     // If a review ID is passed in the url
                     if (reviewId) {
                         const theReview = [];
 
-                        for (let i = 0; i < businessreviews.length; i += 1) {
-                            if (businessreviews[i].id === parseInt(reviewId, 10)) {
-                                theReview.push(businessreviews[i]);
+                        for (let i = 0; i < businessReviews.length; i += 1) {
+                            if (businessReviews[i].id === parseInt(reviewId, 10)) {
+                                theReview.push(businessReviews[i]);
                                 break;
                             }
                         }
@@ -60,7 +60,7 @@ const UtilityFunctions = {
                         }
                         return ResponseFunction(res, 404, 'Review not found');
                     }
-                    return ResponseFunction(res, 200, 'All reviews', businessreviews);
+                    return ResponseFunction(res, 200, 'All reviews', businessReviews);
                 }
                 return ResponseFunction(res, 404, 'Business not found');
             });

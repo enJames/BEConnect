@@ -1,6 +1,6 @@
 const BusinessesModel = (sequelize, DataTypes) => {
     const BusinessesTable = sequelize.define('enbusinesses', {
-        businessname: {
+        businessName: {
             allowNull: false,
             type: DataTypes.STRING,
             unique: true
@@ -9,19 +9,51 @@ const BusinessesModel = (sequelize, DataTypes) => {
             allowNull: false,
             type: DataTypes.STRING
         },
+        mantra: {
+            allowNull: false,
+            type: DataTypes.STRING
+        },
+        email: {
+            allowNull: false,
+            type: DataTypes.STRING
+        },
+        website: {
+            allowNull: false,
+            type: DataTypes.STRING
+        },
+        phone: {
+            allowNull: false,
+            type: DataTypes.STRING
+        },
+        addressOne: {
+            allowNull: false,
+            type: DataTypes.STRING
+        },
+        addressTwo: {
+            allowNull: false,
+            type: DataTypes.STRING
+        },
+        city: {
+            allowNull: false,
+            type: DataTypes.STRING
+        },
         state: {
+            allowNull: false,
+            type: DataTypes.STRING
+        },
+        country: {
             allowNull: false,
             type: DataTypes.STRING
         }
     }, { freezeTableName: true });
     BusinessesTable.associate = (models) => {
         BusinessesTable.belongsTo(models.enusers, {
-            foreignKey: 'useridentifier',
+            foreignKey: 'userIdentifier',
             onDelete: 'CASCADE'
         });
-        BusinessesTable.hasMany(models.enbusinessreviews, {
-            foreignKey: 'businessidentifier',
-            as: 'businessreviews'
+        BusinessesTable.hasMany(models.enreviews, {
+            foreignKey: 'businessIdentifier',
+            as: 'businessReviews'
         });
     };
 

@@ -1,19 +1,37 @@
 module.exports = {
-    up: (queryInterface, Sequelize) => queryInterface.createTable('enbusinessreviews', {
+    up: (queryInterface, Sequelize) => queryInterface.createTable('enreviews', {
         id: {
             allowNull: false,
             type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        reveiwer: {
+        firstname: {
             allowNull: false,
+            type: Sequelize.STRING
+        },
+        lastname: {
+            allowNull: false,
+            type: Sequelize.STRING
+        },
+        email: {
+            allowNull: true,
+            type: Sequelize.STRING,
+            validate: {
+                isEmail: true
+            }
+        },
+        company: {
+            allowNull: true,
+            type: Sequelize.STRING
+        },
+        position: {
+            allowNull: true,
             type: Sequelize.STRING
         },
         review: {
             allowNull: false,
-            type: Sequelize.STRING,
-            unique: true
+            type: Sequelize.STRING
         },
         createdAt: {
             allowNull: false,
@@ -23,13 +41,13 @@ module.exports = {
             allowNull: false,
             type: Sequelize.DATE
         },
-        businessidentifier: {
+        businessIdentifier: {
             type: Sequelize.INTEGER,
             onDelete: 'CASCADE',
             references: {
                 model: 'enbusinesses',
                 key: 'id',
-                as: 'businessidentifier'
+                as: 'businessIdentifier'
             }
         }
     }),

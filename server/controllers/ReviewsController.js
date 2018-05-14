@@ -1,25 +1,31 @@
 import models from '../models/index';
 import UtilityFunctions from '../UtilityFunctions';
 
-const { enbusinesses, enbusinessreviews } = models;
+const { enbusinesses, enreviews } = models;
 const { SendResponse, RetrieveReviews } = UtilityFunctions;
 
 const ReviewsController = {
     create: (req, res) => {
         // Assign values
-        const { reveiwer, review } = req.body;
+        const {
+            firstname,
+            lastname,
+            email,
+            company,
+            position,
+            review
+        } = req.body;
         const { businessId } = req.params;
-
-        // User input validation
-        if (!reveiwer || !review) {
-            return SendResponse(res, 400, 'Fill out all fields');
-        }
 
         // Define values to persist
         const dataToPersist = {
-            reveiwer,
+            firstname,
+            lastname,
+            email,
+            company,
+            position,
             review,
-            businessidentifier: businessId
+            businessIdentifier: businessId
         };
 
         // Persist successful validation data to database
@@ -27,7 +33,7 @@ const ReviewsController = {
             .findById(parseInt(businessId, 10))
             .then((business) => {
                 if (business) {
-                    enbusinessreviews
+                    enreviews
                         .create(dataToPersist)
                         .then(reviews => SendResponse(res, 201, 'Review posted', reviews))
                         .catch(error => SendResponse(res, 500, 'There was an error', error.errors));
@@ -43,7 +49,7 @@ const ReviewsController = {
         return RetrieveReviews(
             res,
             enbusinesses,
-            enbusinessreviews,
+            enreviews,
             SendResponse,
             businessId
         );
@@ -54,7 +60,7 @@ const ReviewsController = {
         return RetrieveReviews(
             res,
             enbusinesses,
-            enbusinessreviews,
+            enreviews,
             SendResponse,
             businessId,
             reviewId

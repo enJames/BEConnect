@@ -8,32 +8,45 @@ const BusinessController = {
     // Register a business
     create: (req, res) => {
         const {
-            businessname,
+            businessName,
             category,
+            mantra,
+            email,
+            website,
+            phone,
+            addressOne,
+            addressTwo,
+            city,
             state,
-            useridentifier
+            country,
+            userIdentifier
         } = req.body;
 
-        // Validation of user input
-        if (!businessname || !category || !state) {
-            return SendResponse(res, 400, 'Fill out all fields');
-        }
+        // Data to persist to database
         const dataToPersist = {
-            businessname,
+            businessName,
             category,
+            mantra,
+            email,
+            website,
+            phone,
+            addressOne,
+            addressTwo,
+            city,
             state,
-            useridentifier
+            country,
+            userIdentifier
         };
 
         // Persist successful validation data to database
         enbusinesses
-            .findOrCreate({ where: { businessname }, defaults: dataToPersist })
+            .findOrCreate({ where: { businessName }, defaults: dataToPersist })
             .spread((business, created) => {
                 // Send a response after data persistence to database
                 if (!created) {
                     return SendResponse(res, 409, 'Business name already exists');
                 }
-                return SendResponse(res, 201, `${businessname} has been registered successfully`, business);
+                return SendResponse(res, 201, `${businessName} has been registered successfully`, business);
             })
             .catch(error => SendResponse(res, 500, 'There was a problem', error));
     },
@@ -41,21 +54,35 @@ const BusinessController = {
     update: (req, res) => {
         const { businessId } = req.params;
         const {
-            businessname,
+            businessName,
             category,
-            state
+            mantra,
+            email,
+            website,
+            phone,
+            addressOne,
+            addressTwo,
+            city,
+            state,
+            country
         } = req.body;
 
-        // Validation of user input
-        if (!businessname || !category || !state) {
-            return SendResponse(res, 400, 'Fill out all fields');
-        }
+        // data to update
         const dataToUpdate = {
-            businessname,
+            businessName,
             category,
-            state
+            mantra,
+            email,
+            website,
+            phone,
+            addressOne,
+            addressTwo,
+            city,
+            state,
+            country
         };
 
+        // Find business then update
         enbusinesses
             .findById(businessId)
             .then((business) => {
@@ -99,6 +126,7 @@ const BusinessController = {
     },
     // Get all businesses
     getBusinesses: (req, res) => {
+        // checks if a query is passed
         if (Object.keys(req.query).length !== 0) {
             const { location, category } = req.query;
             const searchOptions = {};

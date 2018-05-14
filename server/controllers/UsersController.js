@@ -6,14 +6,19 @@ const { SendResponse } = UtilityFunctions;
 
 const UsersController = {
     create: (req, res) => {
-        const { username, email, password } = req.body;
+        const {
+            username,
+            firstname,
+            lastname,
+            email,
+            password
+        } = req.body;
 
-        if (!username || !email || !password) {
-            return SendResponse(res, 400, 'Fill out all fields');
-        }
-
+        // Define values to persist
         const dataToPersist = {
             username,
+            firstname,
+            lastname,
             email,
             password
         };
@@ -31,10 +36,6 @@ const UsersController = {
     },
     login: (req, res) => {
         const { email, password } = req.body;
-
-        if (!email || !password) {
-            return SendResponse(res, 400, 'Fill out all fields');
-        }
 
         enusers
             .findOne({ where: { email, password } })
