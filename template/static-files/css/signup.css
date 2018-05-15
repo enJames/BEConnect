@@ -1,0 +1,10 @@
+@media screen and (max-width: 510px) {
+    form {
+        padding: 3rem 1rem;
+    }
+}
+@media screen and (max-width: 302px) {
+    .main-content {
+        margin-top: 180px;
+    }
+}

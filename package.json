@@ -1,0 +1,50 @@
+{
+    "name": "beconnect",
+    "version": "1.0.0",
+    "description": "An application for connecting businesses and customers.",
+    "main": "server/app.js",
+    "scripts": {
+        "test": "nyc mocha server/test --exit --require babel-core/register",
+        "start": "babel-node server/app.js",
+        "coverage": "nyc report --reporter=text-lcov | coveralls"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/enJames/BEConnect.git"
+    },
+    "author": "Enejo James Oche",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/enJames/BEConnect/issues"
+    },
+    "homepage": "https://github.com/enJames/BEConnect#readme",
+    "dependencies": {
+        "body-parser": "^1.18.2",
+        "chai": "^4.1.2",
+        "chai-http": "^4.0.0",
+        "dotenv": "^5.0.1",
+        "express": "^4.16.3",
+        "morgan": "^1.9.0",
+        "pg": "^7.4.1",
+        "pg-hstore": "^2.3.2",
+        "sequelize": "^4.37.6",
+        "swagger-tools": "^0.10.3",
+        "swagger-ui": "^3.13.4",
+        "yamljs": "^0.3.0"
+    },
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-core": "^6.26.0",
+        "babel-preset-env": "^1.6.1",
+        "babel-preset-stage-2": "^6.24.1",
+        "coveralls": "^3.0.0",
+        "eslint": "^4.19.1",
+        "eslint-config-airbnb": "^16.1.0",
+        "eslint-plugin-import": "^2.11.0",
+        "eslint-plugin-jsx-a11y": "^6.0.3",
+        "eslint-plugin-react": "^7.7.0",
+        "istanbul": "^0.4.5",
+        "mocha": "^5.1.0",
+        "nyc": "^11.6.0"
+    }
+}
