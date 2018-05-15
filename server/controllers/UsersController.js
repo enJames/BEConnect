@@ -32,7 +32,7 @@ const UsersController = {
                 }
                 return SendResponse(res, 201, 'Sign up successful');
             })
-            .catch(error => console.log('There was an error', error));
+            .catch(error => SendResponse(res, 500, 'There was an error', error));
     },
     login: (req, res) => {
         const { email, password } = req.body;
