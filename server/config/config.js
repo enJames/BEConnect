@@ -1,7 +1,3 @@
-import { config } from 'dotenv';
-
-config();
-
 const configJson = {
     development: {
         username: process.env.DB_USERNAME,

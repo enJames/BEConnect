@@ -3,7 +3,11 @@ import logger from 'morgan';
 import bodyParser from 'body-parser';
 import swaggerTools from 'swagger-tools';
 import YAML from 'yamljs';
+import { config } from 'dotenv';
+
 import Routes from './routes/Routes';
+
+config();
 
 const app = express();
 const urlencoded = bodyParser.urlencoded({ extended: false });
