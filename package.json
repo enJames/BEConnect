@@ -22,8 +22,12 @@
         "body-parser": "^1.18.2",
         "chai": "^4.1.2",
         "chai-http": "^4.0.0",
+        "dotenv": "^5.0.1",
         "express": "^4.16.3",
         "morgan": "^1.9.0",
+        "pg": "^7.4.1",
+        "pg-hstore": "^2.3.2",
+        "sequelize": "^4.37.6",
         "swagger-tools": "^0.10.3",
         "swagger-ui": "^3.13.4",
         "yamljs": "^0.3.0"
